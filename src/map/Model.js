@@ -15,11 +15,9 @@ class Model {
    * @returns {JSON}
    */
   async getResponse() {
-    var response = await fetch(this.dataEndpoint, {
+    return await fetch(this.dataEndpoint, {
       cache: 'force-cache',
     }).then((response) => response.json());
-
-    return response;
   }
 
   /**
@@ -96,23 +94,6 @@ class Model {
     return this.response.PROPERTIES.filter(
       (propertyElement) => propertyElement.STATE === state,
     );
-  }
-
-  async getImageResponse() {
-    return fetch('http://127.0.0.1/wp/wp-json/wp/v2/media/?per_page=100').then((response) => response.json());
-  }
-
-  async getImageFromID(id) {
-
-    let imageAttr = await this.mediaResponse.then((imageElement) => {
-      imageElement.find(imageAttr => imageAttr.slug === id);
-    })
-
-    if (imageAttr === undefined) {
-      return 'http://127.0.0.1/wp/wp-content/uploads/2021/07/kittle_placeholder.png'
-    }
-
-    return imageAttr.source_url;
   }
 
   /**

@@ -14,10 +14,6 @@ class Controller {
 
     // Draw the initial map
     this.drawMap();
-
-
-
-
   }
 
   /**
