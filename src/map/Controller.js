@@ -19,52 +19,56 @@ class Controller {
   /**
    * Function to handle the dropdown button click event
    */
-  handleToggleDropdown() {
-    this.View.toggleDropdown();
+  handleToggleDropdown(e) {
+    this.View.toggleDropdown(e);
   }
 
   /**
    * Function to handle the selection of the items in the dropdown menu
    */
-  handleDropdownSelection() {
-    this.View.dropdownContentSelect();
+  handleDropdownSelection(e) {
+    this.View.dropdownContentSelect(e);
     this.drawMap();
   }
 
   /**
    * Function to handle the selection of the checkboxes event
    */
-  handleCheckboxFilterSelection() {
-    this.checkboxFilterSelection();
+  handleCheckboxFilterSelection(e) {
+    this.checkboxFilterSelection(e);
   }
 
   /**
    * Function to clear the checkboxes and clear filters
    */
-  handleClearFilters() {
-    this.clearFilters();
+  handleClearFilters(e) {
+    this.clearFilters(e);
   }
 
   /**
    * Function to handle the search button click event
    */
-  handlePropertySearch() {
-    this.drawMap();
-    this.Model.closeAutoComplete();
+  handlePropertySearch(e) {
+    this.drawMap(e);
+    this.Model.closeAutoComplete(e);
+  }
+
+  handlePropertyClear(e) {
+    this.View.clearSearch(e);
   }
 
   /**
    * Function to handle the filter menu open button event
    */
-  handleOpenFilterMenu() {
-    this.View.openFilterMenu();
+  handleOpenFilterMenu(e) {
+    this.View.openFilterMenu(e);
   }
 
   /**
    * Function to handle the filter menu close button event and the apply filter button event
    */
-  handleCloseFilterMenu() {
-    this.View.closeFilterMenu();
+  handleCloseFilterMenu(e) {
+    this.View.closeFilterMenu(e);
   }
 
   /**
@@ -129,7 +133,7 @@ class Controller {
     // Only get the filtered data if it is a filtered search
     if (filteredSearch) {
       // Get the data that passes the search query filter
-      const searchFilterData = await this.Model.findPropertyNames($('#search_query').val());
+      const searchFilterData = await this.Model.findPropertyNames($('.js-search-input').val());
 
       // Get the data that passes the state select filter
       const stateFilterData = await this.Model.getPropertiesFromState($('#state_query').val());
@@ -144,7 +148,7 @@ class Controller {
        * Pass the filtered data through a union filter and retreive only the ones that meet all 3 of
        * the filters
        */
-      propertyData = this.Model.unionFilter(
+      propertyData = Model.unionFilter(
         searchFilterData,
         stateFilterData,
         checkboxFilterData,
@@ -253,6 +257,10 @@ class Controller {
     // Adds a listener to the property search button
     $('.js-search-button').off('click');
     $('.js-search-button').bind('click', this.handlePropertySearch.bind(this));
+
+    // Adds a listenter to the property search clear button
+    $('.js-search-clear-button').off('click');
+    $('.js-search-clear-button').bind('click', this.handlePropertyClear.bind(this));
 
     // TODO Adds a listener to the property search clear button
 

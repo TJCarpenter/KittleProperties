@@ -1,6 +1,5 @@
 <?php
 
-// Include JS Files
 ?>
 
 <!-- “ Code is like humor. When you have to explain it, it’s bad.” – Cory House -->
@@ -40,25 +39,24 @@
 	<!-- JQuery -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="<?php echo plugin_dir_url(dirname(__FILE__, 2)) . "/style/map.css"; ?>">
-    <link rel="stylesheet" href="<?php echo plugin_dir_url(dirname(__FILE__, 2)) . "/style/listing.css"; ?>">
-    <link rel="stylesheet" href="<?php echo plugin_dir_url(dirname(__FILE__, 2)) . "/style/filterGroup.css"; ?>">
-    <link rel="stylesheet" href="<?php echo plugin_dir_url(dirname(__FILE__, 2)) . "/style/markerStyle.css"; ?>">
+  <link rel="stylesheet" href="<?php echo plugin_dir_url(dirname(__FILE__, 2)) . "/style/map.css"; ?>">
+  <link rel="stylesheet" href="<?php echo plugin_dir_url(dirname(__FILE__, 2)) . "/style/listing.css"; ?>">
+  <link rel="stylesheet" href="<?php echo plugin_dir_url(dirname(__FILE__, 2)) . "/style/filterGroup.css"; ?>">
+  <link rel="stylesheet" href="<?php echo plugin_dir_url(dirname(__FILE__, 2)) . "/style/markerStyle.css"; ?>">
 
 </head>
-    <img class='js-image' src="" alt="">
-
     <div class="map-container">
         <div id="map">
-            <div class="filter-menu">
+            <div class="filter-menu js-filter-menu">
                 <div class="filter-menu__header" style="display: none;">
                     <h2>FILTER</h2>
-                    <span class="close js-close-filter-menu" id="closeFilterMenuButton"><img
+                    <span class="close js-filter-menu_close" id="closeFilterMenuButton"><img
                             src="https://kittleproperties.com/wp-content/uploads/2021/07/close_white.png" alt="close"></span>
                 </div>
                 <div class="filter-menu__body FILTER-AREA" style="display: none;"> <!-- Initially Set -->
                     <div class="filter-group__text autocomplete">
-                        <input id="search_query" type="text" placeholder="Search Property" name="search" autocomplete="off">
+                        <input class="js-search-input" id="search_query" type="text" placeholder="Search Property" name="search" autocomplete="off">
+                        <button class="js-search-clear-button" type="button"><img src="https: //kittleproperties.com/wp-content/uploads/2021/07/close_white.png" alt="clear"></button>
                         <button class="js-search-button" id="search" type="submit"><img
                                 src="https://kittleproperties.com/wp-content/uploads/2021/07/search_primary.png" alt="search"></button>
                     </div>
