@@ -119,22 +119,6 @@ class View {
   }
 
   /**
-   * Description
-   */
-  static async getImageSource(propertyDataImage) {
-
-    let imageSource = await getImageFromID(propertyDataImage).then((src) => {
-      if (src === undefined) {
-        imageSource = 'http://127.0.0.1//wp//wp-content//uploads//2021//07//kittle_placeholder.png';
-      } else {
-        imageSource = src.source_url;
-      }
-    });
-
-    return imageSource;
-  }
-
-  /**
    * Function that adds the listing to the search result
    * @param {Object} propertyData Data of the property
    */
@@ -196,17 +180,6 @@ class View {
   addStateToMap(stateData) {
     // Display the state on the map
     this.displayStatePoly(stateData.getGeometry());
-
-    //! No Functionality Currently
-
-    // Add the markers to the state if zoomed in enough
-    if (this.LeafletFunctions.zoomLevel() < 3) {
-      // Show the markers
-      this.LeafletFunctions.showMarkers();
-    } else {
-      // Hide the markers
-      this.LeafletFunctions.hideMarkers();
-    }
 
     // Display the Listings
     this.displayListings(stateData.getPropertyList());
