@@ -1,0 +1,29 @@
+/*===== COLOR DEFINITIONS ===== */
+:root {
+    --primaryColor: #0f5ae6;
+    --secondaryColor: #0a154f;
+    --primaryHiglightColor: #0a1d96;
+    --secondaryHighlightColor: #198ceb;
+    --borderColor: #e1e1e1;
+    --defaultBackgroundColor: #ffffff;
+    --alternateBackgroundColor: #f8f8f8;
+
+    /* Leaflet MarkerCluster Colors */
+    --markerClusterSmallColor: #0a154f;
+    --markerClusterMediumColor: #3b4472;
+    --markerClusterLargeColor: #6c7395;
+}
+
+/* ===== MAP CONTAINER ===== */
+.map-container {
+    display: grid;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-columns: auto;
+    grid-template-rows: 1fr 1fr;
+    height: auto;
+    max-width: none !important;
+    grid-template-areas:
+        "map map map"
+        "RESULTS RESULTS RESULTS";
+}

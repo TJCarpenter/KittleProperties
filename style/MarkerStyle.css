@@ -1,0 +1,91 @@
+/* ===== SMALL START ===== */
+.marker-cluster-small {
+    background-color: #fff;
+    color: #fff;
+}
+
+.marker-cluster-small div {
+    background-color: #0a154f;
+    color: #fff;
+}
+
+/* ===== SMALL END ===== */
+
+/* ===== MEDIUM START ===== */
+
+.marker-cluster-medium {
+    background-color: #fff;
+    color: #fff;
+}
+
+.marker-cluster-medium div {
+    background-color: #3b4472;
+    color: #fff;
+}
+
+/* ===== MEDIUM END ===== */
+
+/* ===== LARGE START ===== */
+
+.marker-cluster-large {
+    background-color: #fff;
+    color: #fff;
+}
+
+.marker-cluster-large div {
+    background-color: #6c7395;
+    color: #fff;
+}
+
+/* ===== LARGE END ===== */
+
+/* ===== MARKER CLUSTER START ===== */
+
+.marker-cluster span {
+    line-height: 34px;
+}
+
+.marker-cluster div {
+    width: 34px;
+    height: 34px;
+    margin-left: 3px !important;
+    margin-top: 3px !important;
+    border-radius: 20px;
+}
+
+/* ===== MARKER CLUSTER END ===== */
+
+/* ===== LEAFLET OVERWRITE ===== */
+.leaflet-bottom {
+	margin-bottom: 1.25rem;
+	text-decoration: none !important;
+}
+
+.leaflet-top,
+.leaflet-bottom{
+	z-index: 400;
+}
+
+.easy-button-container {
+    width: fit-content !important;
+}
+
+.leaflet-bar button {
+    height: fit-content !important;
+    width: fit-content !important;
+}
+
+.easy-button-button {
+    width: fit-content !important;
+}
+
+.filterMenuGroup {
+    display: inline-flex;
+    gap: 0.5rem;
+    align-items: center;
+    color: #6897d0;
+}
+
+.filterMenuGroup h2{
+	margin-bottom: 0;
+}
