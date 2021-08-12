@@ -4,7 +4,6 @@ class Model {
   constructor() {
     // this.dataEndpoint = 'https://kittleproperties.com/wp-json/api/v1/kittle';
     this.dataEndpoint = 'http://127.0.0.1/wp/wp-json/api/v1/kittle';
-    this.mediaResponse = this.getImageResponse();
     this.response = this.getResponse();
     this.Autocomplete = new Autocomplete($('#search_query'), this.getPropertyNames());
   }
@@ -51,8 +50,6 @@ class Model {
    * @returns {Array}
    */
   getPropertyNames() {
-    console.log(this.response);
-
     return this.response.then((data) => data.PROPERTIES.map(
       (propertyElement) => propertyElement.NAME,
     ));
@@ -78,11 +75,11 @@ class Model {
   getPropertiesFromState(state) {
     if (this.response != null && typeof (this.response.then) === 'function') {
       // Promise
-      return this.response.then(() => {
+      return this.response.then((response) => {
         if (state === '') {
-          return this.response.PROPERTIES;
+          return response.PROPERTIES;
         }
-        return this.response.PROPERTIES.filter(
+        return response.PROPERTIES.filter(
           (propertyElement) => propertyElement.STATE === state,
         );
       });
@@ -97,25 +94,26 @@ class Model {
   }
 
   /**
-   f The FindPropertyNames returns all properties that match the given query
+   * The FindPropertyNames returns all properties that match the given query
    * @param {String} stringQuery
    * @returns {Array}
    */
   findPropertyNames(stringQuery) {
     if (this.response != null && typeof (this.response.then) === 'function') {
       // Promise
-      return this.response.then(() => {
+      return this.response.then((response) => {
         if (stringQuery === '') {
-          return this.response.PROPERTIES;
+          return response.PROPERTIES;
         }
 
-        return this.response.PROPERTIES.filter(
+        return response.PROPERTIES.filter(
           (propertyElement) => propertyElement.NAME.toLowerCase().includes(
             stringQuery.toLowerCase(),
           ),
         );
       });
     }
+
     // Object
     if (stringQuery === '') {
       return this.response.PROPERTIES;
@@ -155,6 +153,16 @@ class Model {
    * @return {Array}
    */
   findPropertiesByHousingType(HousingTypeFilter) {
+    if (this.response != null && typeof (this.response.then) === 'function') {
+      // Promise
+      return this.response.then((response) => {
+        return response.PROPERTIES.filter(
+          (propertyElement) => HousingTypeFilter.indexOf(propertyElement.HOUSINGTYPES) !== -1,
+        );
+      })
+    }
+
+    // Object
     return this.response.PROPERTIES.filter(
       (propertyElement) => HousingTypeFilter.indexOf(propertyElement.HOUSINGTYPES) !== -1,
     );
@@ -167,6 +175,16 @@ class Model {
    * @return {Array}
    */
   findPropertiesByAffordability(AffordabilityFilter) {
+    if (this.response != null && typeof (this.response.then) === 'function') {
+      // Promise
+      return this.response.then((response) => {
+        return response.PROPERTIES.filter(
+          (propertyElement) => AffordabilityFilter.indexOf(propertyElement.AFFORDABILITY) !== -1,
+        );
+      })
+    }
+
+    // Object
     return this.response.PROPERTIES.filter(
       (propertyElement) => AffordabilityFilter.indexOf(propertyElement.AFFORDABILITY) !== -1,
     );
@@ -180,9 +198,23 @@ class Model {
    * @return {Array}
    */
   findPropertiesByFilters(HousingTypeFilter, AffordabilityFilter) {
-    const housingFilteredResult = this.findPropertiesByHousingType(HousingTypeFilter);
-    const affordabilityFilteredResult = this.findPropertiesByAffordability(AffordabilityFilter);
+    let housingFilteredResult = this.findPropertiesByHousingType(HousingTypeFilter);
+    let affordabilityFilteredResult = this.findPropertiesByAffordability(AffordabilityFilter);
 
+    if (housingFilteredResult != null && affordabilityFilteredResult != null) {
+      if (typeof (housingFilteredResult.then) === 'function' &&
+        typeof (affordabilityFilteredResult.then) === 'function') {
+        // Promises 
+        return Promise.all([housingFilteredResult, affordabilityFilteredResult]).then(([housingResult, affordabilityResult]) => {
+          return housingResult.filter(
+            (propertyElement) => affordabilityResult.includes(propertyElement)
+          );
+        });
+
+      }
+    }
+
+    // Objects
     return housingFilteredResult.filter(
       (propertyElement) => affordabilityFilteredResult.includes(propertyElement),
     );
@@ -206,6 +238,11 @@ class Model {
   }
 
   static unionFilter(searchData, stateData, checkboxData) {
+
+    console.log(searchData);
+    console.log(stateData);
+    console.log(checkboxData);
+
     return searchData.filter(
       (searchFilteredProperties) => stateData.filter(
         (stateFilteredProperties) => checkboxData.includes(stateFilteredProperties),

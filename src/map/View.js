@@ -7,6 +7,7 @@ class View {
     this.listingArea = $('#listingArea');
     this.dropdownButton = $('.dropdown-button');
     this.dropdownContent = $('.dropdown-content');
+    this.searchBar = $('.js-search-input');
   }
 
   /**
@@ -173,6 +174,10 @@ class View {
     this.clearMarkers();
   }
 
+  clearSearch() {
+    this.searchBar.val('');
+  }
+
   /**
    * AddStateToMap function adds a single state and its properties to the map and listing area
    * @param {Object} stateData
@@ -189,56 +194,52 @@ class View {
    * Function to open the filter menu based on the screen width
    */
   openFilterMenu(e) {
-    if (e.isTrusted) {
-      this.LeafletFunctions.setFilterView();
 
-      $('.filter-menu').animate({
-        width: window.screen.width < 700 ? '100%' : '33%',
-      }, 500);
+    this.LeafletFunctions.setFilterView();
 
-      $('.filter-menu .TOP, .filter-menu .FILTER-AREA').fadeIn();
+    $('.filter-menu').animate({
+      width: window.screen.width < 700 ? '100%' : '33%',
+    }, 500);
 
-      $('.filterMenuGroup').fadeOut();
+    $('.filter-menu .TOP, .filter-menu .FILTER-AREA').fadeIn();
 
-      this.LeafletFunctions.disableMap();
-    }
+    $('.filterMenuGroup').fadeOut();
+
   }
 
   /**
    * Function to close the filer menu and reset the view
    */
   closeFilterMenu(e) {
-    if (e.isTrusted) {
-      this.LeafletFunctions.closeFilterView();
+    this.LeafletFunctions.closeFilterView();
 
-      $('.filter-menu').animate({
-        width: '0%',
-      }, 500);
+    $('.filter-menu').animate({
+      width: '0%',
+    }, 500);
 
-      $('.filter-menu .TOP, .filter-menu .FILTER-AREA').fadeOut();
+    $('.filter-menu .TOP, .filter-menu .FILTER-AREA').fadeOut();
 
-      $('.filterMenuGroup').fadeIn();
+    $('.filterMenuGroup').fadeIn();
 
-      this.LeafletFunctions.enableMap();
-    }
+    this.LeafletFunctions.enableMap();
+
   }
 
   /**
    * Function to open and close the dropdown state select
    */
   toggleDropdown(e) {
-    if (e.isTrusted) {
-      this.dropdownContent.toggleClass('show');
-      if (this.dropdownContent.height() > 0) {
-        this.dropdownContent.animate({
-          height: '0px',
-        });
-      } else {
-        this.dropdownContent.animate({
-          height: '50vh',
-        });
-      }
+    this.dropdownContent.toggleClass('show');
+    if (this.dropdownContent.height() > 0) {
+      this.dropdownContent.animate({
+        height: '0px',
+      });
+    } else {
+      this.dropdownContent.animate({
+        height: '50vh',
+      });
     }
+
   }
 
   /**
