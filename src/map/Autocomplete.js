@@ -38,18 +38,34 @@ class Autocomplete {
 
     inputElement.on('keydown', (e) => {
       if (e.keyCode === 40) { // Down Arrow
+
+        // Moving down the list
         this.currentFocus += 1;
+
+        // Highlight the property that is focused
         this.addActive();
+
       } else if (e.keyCode === 38) { // Up Arrow
+
+        // Moving up the list
         this.currentFocus -= 1;
+
+        // Highlight the property that is focused
         this.addActive();
+
       } else if (e.keyCode === 13) { // Enter
-        // e.preventDefault();
 
         if (this.currentFocus > -1) {
+
+          // Set the search query to the selected property
           $('#search_query').val($('.autocomplete-active')[0].innerText);
+
+          // Click the search button to start the search
           $('#search').click();
+
+          // Close the list
           this.closeAllLists();
+
         }
       }
     });
@@ -60,6 +76,7 @@ class Autocomplete {
    * @author Tyler
    */
   static closeAllLists() {
+    // Remove all properties from the dropdown list
     $('.autocomplete-items').remove();
   }
 

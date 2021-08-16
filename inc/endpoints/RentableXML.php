@@ -1,187 +1,322 @@
 <?php
 
+/**
+ * rentable_xml
+ *
+ * @param  mixed $request
+ * @return void
+ */
 function rentable_xml(WP_REST_Request $request)
 {
-	$xml = new SimpleXMLElement('<PhysicalProperty />');
+    $xml = new SimpleXMLElement('<PhysicalProperty />');
 
-	$client  = getClient();
-	$service = new Google_Service_Sheets($client);
+    $client  = getGoogleClient();
+    $service = new Google_Service_Sheets($client);
 
-	$spreadsheetId = get_option('kittle_map_options')['SHEET_ID'];
-	$listing_range  = 'Listing!A:I';
-	$property_range = 'Property!A:O';
+    $spreadsheetId  = get_option('kittle_map_options')['SHEET_ID'];
+    $listing_range  = 'Listing!A:J';
+    $property_range = 'Property!A:O';
 
-	$response       = $service->spreadsheets_values->get($spreadsheetId, $listing_range);
-	$listing_values = $response->getValues();
+    $response = $service->spreadsheets_values->get(
+        $spreadsheetId,
+        $listing_range
+    );
+    $listing_values = $response->getValues();
 
-	// Initialize an empty data array
-	$rentable_data = array();
+    // Initialize an empty data array
+    $rentable_data = array();
 
-	if (empty($listing_values)) {
-		array_push($data, array('error' => 'No values found'));
-	} else {
+    if (empty($listing_values)) {
+        array_push($data, array('error' => 'No values found'));
+    } else {
 
-		// Add each value to the data array grouping by property ID
-		foreach ($listing_values as $row) {
-			$listing_id      = $row[0];
-			$parent_id       = $row[1];
-			$bedrooms        = $row[3];
-			$bathrooms       = $row[4];
-			$min_square_feet = $row[5];
-			$max_square_feet = $row[6];
-			$min_price       = (int) filter_var($row[7], FILTER_SANITIZE_NUMBER_INT); //preg_replace('/([^0-9])/i', '', $row[7]);
-			$max_price       = (int) filter_var($row[8], FILTER_SANITIZE_NUMBER_INT);
-			//preg_replace('/([^0-9])/i', '', $row[8]);
+        // Add each value to the data array grouping by property ID
+        foreach ($listing_values as $row) {
+            $listing_id      = $row[0];
+            $parent_id       = $row[1];
+            $bedrooms        = $row[3];
+            $bathrooms       = $row[4];
+            $min_square_feet = $row[5];
+            $max_square_feet = $row[6];
+            $min_price       = (int) filter_var($row[7], FILTER_SANITIZE_NUMBER_INT);
+            $max_price       = (int) filter_var($row[8], FILTER_SANITIZE_NUMBER_INT);
+            $data_available  = $row[9];
 
-			if ($parent_id == 'PARENT ID') {
-				continue;
-			}
+            if ('PARENT ID' == $parent_id) {
+                continue;
+            }
 
-			// Create an empty array if the property ID index has not been created
-			if (!isset($rentable_data[$parent_id]['ILS_Unit'])) {
-				$rentable_data[$parent_id]['ILS_Unit'] = array();
-			}
+            // Create an empty array if the property ID index has not been created
+            if (!isset($rentable_data[$parent_id]['ILS_Unit'])) {
+                $rentable_data[$parent_id]['ILS_Unit'] = array();
+            }
 
-			// Push to the array
-			array_push($rentable_data[$parent_id]['ILS_Unit'], array('ListingID' => $listing_id, 'MarketingName' => '', 'UnitBedrooms' => $bedrooms, 'UnitBathrooms' => $bathrooms, 'MinSquareFeet' => $min_square_feet, 'MaxSquareFeet' => $max_square_feet, 'UnitRent' => $min_price, 'MinPrice' => $min_price, 'MaxPrice' => $max_price));
-		}
-	}
+            // Push to the array
+            array_push(
+                $rentable_data[$parent_id]['ILS_Unit'],
+                array(
+                    'ListingID'     => $listing_id,
+                    'MarketingName' => '',
+                    'UnitBedrooms'  => $bedrooms,
+                    'UnitBathrooms' => $bathrooms,
+                    'MinSquareFeet' => $min_square_feet,
+                    'MaxSquareFeet' => $max_square_feet,
+                    'UnitRent'      => $min_price,
+                    'MinPrice'      => $min_price,
+                    'MaxPrice'      => $max_price,
+                    'DateAvailable' => $data_available,
+                )
+            );
+        }
+    }
 
-	$response        = $service->spreadsheets_values->get($spreadsheetId, $property_range);
-	$property_values = $response->getValues();
+    // Get the response from the spreadsheet
+    $response = $service->spreadsheets_values->get(
+        $spreadsheetId,
+        $property_range
+    );
 
-	if (empty($property_values)) {
-		// Empty
-	} else {
-		// Add each value to the data array grouping by property ID
-		foreach ($property_values as $row) {
-						
-			$id          = $row[0];
-			$name        = $row[1];
-			$address     = $row[2];
-			$city        = $row[3];
-			$state       = $row[4];
-			$postal_code = $row[5];
-			$lat         = $row[6];
-			$lon         = $row[7];
-			$phone 		 = trim($row[13]);
-			$email 		 = $row[14];
+    // Extract the values from the response
+    $property_values = $response->getValues();
 
-			if ($id == 'ID') {
-				continue;
-			}
+    // Check if the values are empty
+    if (empty($property_values)) {
+        // TODO Return previous successful response
+    } else {
+        // Add each value to the data array grouping by property ID
+        foreach ($property_values as $row) {
 
-			// Push to the array
-			$rentable_data[$id]['Property'] = array('ID' => $id, 'Address' => array('AddressLine1' => $address, 'City' => $city, 'State' => $state, 'PostalCode' => $postal_code), 'Phone' => $phone, 'Email' => $email);
-			
-			$rentable_data[$id]['ILS_Identification'] = array('Latitude' => $lat, 'Longitude' => $lon);
+            $id          = $row[0];
+            $name        = $row[1];
+            $address     = $row[2];
+            $city        = $row[3];
+            $state       = $row[4];
+            $postal_code = $row[5];
+            $lat         = $row[6];
+            $lon         = $row[7];
+            $phone       = trim($row[13]);
+            $email       = $row[14];
 
-			if (isset($rentable_data[$id]['ILS_Unit'])) {
-				foreach ($rentable_data[$id]['ILS_Unit'] as &$unit) {
-					$unit['MarketingName'] = $name;
-				}
-			}
-		}
-	}
+            if ('ID' == $id) {
+                continue;
+            }
 
-	foreach ($rentable_data as $data_point) {
+            // Push to the array
+            $rentable_data[$id]['Property'] = array('ID' => $id, 'Address' => array('AddressLine1' => $address, 'City' => $city, 'State' => $state, 'PostalCode' => $postal_code), 'Phone' => $phone, 'Email' => $email);
 
-		// Property
-		$property = $xml->addChild('Property');
-		$property->addAttribute('IDValue', $data_point['Property']['ID']);
-		$property->addAttribute('IDType', 'PrimaryID');
+            $rentable_data[$id]['ILS_Identification'] = array('Latitude' => $lat, 'Longitude' => $lon);
 
-		// PropertyID
-		$property_id = $property->addChild('PropertyID');
+            if (isset($rentable_data[$id]['ILS_Unit'])) {
+                foreach ($rentable_data[$id]['ILS_Unit'] as &$unit) {
+                    $unit['MarketingName'] = $name;
+                }
+            }
+        }
+    }
 
-		// Identification
-		$identification = $property_id->addChild('Identification');
-		$identification->addAttribute('IDValue', $data_point['Property']['ID']);
-		$identification->addAttribute('IDType', 'PrimaryID');
+    foreach ($rentable_data as $data_point) {
 
-		//Address
-		$address = $property_id->addChild('Address');
-		$address->addAttribute('AddressType', 'Property');
+        // Property
+        $property = $xml->addChild('Property');
+        $property->addAttribute(
+            'IDValue',
+            $data_point['Property']['ID']
+        );
+        $property->addAttribute(
+            'IDType',
+            'PrimaryID'
+        );
 
-		//Address Line 1
-		$address_line_1 = $address->addChild('AddressLine1', $data_point['Property']['Address']['AddressLine1']);
+        // PropertyID
+        $property_id = $property->addChild('PropertyID');
 
-		//City
-		$city = $address->addChild('City', $data_point['Property']['Address']['City']);
+        // Identification
+        $identification = $property_id->addChild('Identification');
+        $identification->addAttribute(
+            'IDValue',
+            $data_point['Property']['ID']
+        );
+        $identification->addAttribute(
+            'IDType',
+            'PrimaryID'
+        );
 
-		//State
-		$state = $address->addChild('State', $data_point['Property']['Address']['State']);
+        //Address
+        $address = $property_id->addChild('Address');
+        $address->addAttribute(
+            'AddressType',
+            'Property'
+        );
 
-		//Postal Code
-		$postal_code = $address->addChild('PostalCode', $data_point['Property']['Address']['PostalCode']);
-		
-		// Phone Number
-		$phone = $property->addChild('Phone');
-		$phone->addAttribute('PhoneType', 'Office');
-		$phoneNumber = $phone->addChild('PhoneNumber', $data_point['Property']['Phone']);
-		
-		// Email
-		$email = $property->addChild('Email', $data_point['Property']['Email']);
+        //Address Line 1
+        $address_line_1 = $address->addChild(
+            'AddressLine1',
+            $data_point['Property']['Address']['AddressLine1']
+        );
 
-		// ILS_Identification
-		$ils_identification = $property->addChild('ILS_Identification');
-		$ils_identification->addAttribute('ILS_IdentificationType', 'Apartment');
-		$ils_identification->addAttribute('RentalType', 'Unspecified');
+        //City
+        $city = $address->addChild(
+            'City',
+            $data_point['Property']['Address']['City']
+        );
 
-		// Latitude
-		$ils_identification->addChild('Latitude', $data_point['ILS_Identification']['Latitude']);
+        //State
+        $state = $address->addChild(
+            'State',
+            $data_point['Property']['Address']['State']
+        );
 
-		// Longitude
-		$ils_identification->addChild('Longitude', $data_point['ILS_Identification']['Longitude']);
+        //Postal Code
+        $postal_code = $address->addChild(
+            'PostalCode',
+            $data_point['Property']['Address']['PostalCode']
+        );
 
-		// Create the Unit Listing
-		if (isset($data_point['ILS_Unit'])) {
+        // Phone Number
+        $phone = $property->addChild('Phone');
+        $phone->addAttribute(
+            'PhoneType',
+            'Office'
+        );
+        $phoneNumber = $phone->addChild(
+            'PhoneNumber',
+            $data_point['Property']['Phone']
+        );
 
-			foreach ($data_point['ILS_Unit'] as $unit_data) {
-				// ILS_Unit
+        // Email
+        $email = $property->addChild(
+            'Email',
+            $data_point['Property']['Email']
+        );
 
-				$ils_unit = $property->addChild('ILS_Unit');
-				$ils_unit->addAttribute('IDValue', $unit_data['ListingID']);
-				$ils_unit->addAttribute('IDType', 'ILS_UnitID');
+        // ILS_Identification
+        $ils_identification = $property->addChild('ILS_Identification');
+        $ils_identification->addAttribute(
+            'ILS_IdentificationType',
+            'Apartment'
+        );
+        $ils_identification->addAttribute(
+            'RentalType',
+            'Unspecified'
+        );
 
-				$units = $ils_unit->addChild('Units');
-				$unit  = $units->addChild('Unit');
+        // Latitude
+        $ils_identification->addChild(
+            'Latitude',
+            $data_point['ILS_Identification']['Latitude']
+        );
 
-				// Identification
-				$identification = $unit->addChild('Identification');
-				$identification->addAttribute('IDValue', $unit_data['ListingID']);
-				$identification->addAttribute('IDType', 'ILS_UnitID');
+        // Longitude
+        $ils_identification->addChild(
+            'Longitude',
+            $data_point['ILS_Identification']['Longitude']
+        );
 
-				// Marketing Name
-				$unit->addChild('MarketingName', $unit_data['MarketingName']);
+        // Create the Unit Listing
+        if (isset($data_point['ILS_Unit'])) {
 
-				// Unit Bedroom
-				$unit->addChild('UnitBedrooms', $unit_data['UnitBedrooms']);
+            foreach ($data_point['ILS_Unit'] as $unit_data) {
+                // ILS_Unit
 
-				// Unit Bathroom
-				$unit->addChild('UnitBathrooms', $unit_data['UnitBathrooms']);
+                $ils_unit = $property->addChild('ILS_Unit');
+                $ils_unit->addAttribute(
+                    'IDValue',
+                    $unit_data['ListingID']
+                );
+                $ils_unit->addAttribute(
+                    'IDType',
+                    'ILS_UnitID'
+                );
 
-				// Minimum Square Feet
-				$unit->addChild('MinSquareFeet', $unit_data['MinSquareFeet']);
+                $units = $ils_unit->addChild('Units');
+                $unit  = $units->addChild('Unit');
 
-				// Maximum Square Feet
-				$unit->addChild('MaxSquareFeet', $unit_data['MaxSquareFeet']);
+                // Identification
+                $identification = $unit->addChild('Identification');
+                $identification->addAttribute(
+                    'IDValue',
+                    $unit_data['ListingID']
+                );
+                $identification->addAttribute(
+                    'IDType',
+                    'ILS_UnitID'
+                );
 
-				// Unit Rent
-				$unit->addChild('UnitRent', $unit_data['UnitRent']);
+                // Marketing Name
+                $unit->addChild(
+                    'MarketingName',
+                    $unit_data['MarketingName']
+                );
 
-				// Effective Rent
-				$effective_rent = $ils_unit->addChild('EffectiveRent');
-				$effective_rent->addAttribute('Min', $unit_data['MinPrice']);
-				$effective_rent->addAttribute('Max', $unit_data['MaxPrice']);
+                // Unit Bedroom
+                $unit->addChild(
+                    'UnitBedrooms',
+                    $unit_data['UnitBedrooms']
+                );
 
-			}
-		}
+                // Unit Bathroom
+                $unit->addChild(
+                    'UnitBathrooms',
+                    $unit_data['UnitBathrooms']
+                );
 
-	}
+                // Minimum Square Feet
+                $unit->addChild(
+                    'MinSquareFeet',
+                    $unit_data['MinSquareFeet']
+                );
 
-	// Save as version for debugging
-	$xml->saveXML(plugin_dir_url(__FILE__) . '../test.xml');
+                // Maximum Square Feet
+                $unit->addChild(
+                    'MaxSquareFeet',
+                    $unit_data['MaxSquareFeet']
+                );
 
-	return $xml->asXML();
+                // Unit Rent
+                $unit->addChild(
+                    'UnitRent',
+                    $unit_data['UnitRent']
+                );
+
+                // Effective Rent
+                $effective_rent = $ils_unit->addChild('EffectiveRent');
+                $effective_rent->addAttribute(
+                    'Min',
+                    $unit_data['MinPrice']
+                );
+                $effective_rent->addAttribute(
+                    'Max',
+                    $unit_data['MaxPrice']
+                );
+
+                $availability    = $ils_unit->addChild('Availability');
+                $made_ready_date = $availability->addChild('MadeReadyDate');
+                $made_ready_date->addAttribute(
+                    'Month',
+                    getdate(strtotime($unit_data['DateAvailable']))['mon']
+                );
+                $made_ready_date->addAttribute(
+                    'Day',
+                    getdate(strtotime($unit_data['DateAvailable']))['mday']
+                );
+                $made_ready_date->addAttribute(
+                    'Year',
+                    getdate(strtotime($unit_data['DateAvailable']))['year']
+                );
+            }
+        }
+
+    }
+
+    // Create a cache file if the file does not exist
+    if (!file_exists(WP_PLUGIN_DIR . '/Kittle Map/xml/cachedRentableFeed.xml')) {
+        touch(WP_PLUGIN_DIR . '/Kittle Map/xml/cachedRentableFeed.xml');
+    }
+
+    // Write the cache backupfile
+    $file = fopen(WP_PLUGIN_DIR . '/Kittle Map/xml/cachedRentableFeed.xml', 'w');
+    fwrite($file, $xml->asXML());
+    fclose($file);
+
+    return $xml->asXML();
 }

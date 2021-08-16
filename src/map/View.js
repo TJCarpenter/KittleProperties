@@ -220,9 +220,6 @@ class View {
     $('.filter-menu .TOP, .filter-menu .FILTER-AREA').fadeOut();
 
     $('.filterMenuGroup').fadeIn();
-
-    this.LeafletFunctions.enableMap();
-
   }
 
   /**
