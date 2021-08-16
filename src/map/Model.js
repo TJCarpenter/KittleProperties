@@ -237,7 +237,6 @@ class Model {
     }, {});
   }
 
-
   /**
    * Performs an intersection filter on each of the filters only returning those properties
    * that contain all selected filters
@@ -252,26 +251,6 @@ class Model {
         (stateFilteredProperties) => checkboxData.includes(stateFilteredProperties),
       ).includes(searchFilteredProperties),
     );
-  }
-
-  /**
-   * Function to show and hide the state dropdown menu
-   * @author  Tyler
-   */
-  toggleDropdown(e) {
-    // Prevent ghost click
-    if (e.isTrusted) {
-      this.DropdownContent.toggleClass('show');
-      if (this.DropdownContent.height() > 0) {
-        this.DropdownContent.animate({
-          height: '0px',
-        });
-      } else {
-        this.DropdownContent.animate({
-          height: '50vh',
-        });
-      }
-    }
   }
 
   /**
