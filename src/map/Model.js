@@ -237,12 +237,16 @@ class Model {
     }, {});
   }
 
-  static unionFilter(searchData, stateData, checkboxData) {
 
-    console.log(searchData);
-    console.log(stateData);
-    console.log(checkboxData);
-
+  /**
+   * Performs an intersection filter on each of the filters only returning those properties
+   * that contain all selected filters
+   * @param {Array} searchData
+   * @param {Array} stateData
+   * @param {Array} checkboxData
+   * @returns {Array}
+   */
+  static intersection(searchData, stateData, checkboxData) {
     return searchData.filter(
       (searchFilteredProperties) => stateData.filter(
         (stateFilteredProperties) => checkboxData.includes(stateFilteredProperties),
