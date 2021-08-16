@@ -24,7 +24,7 @@ class View {
    * @returns {any}
    */
   createMarkerCluster() {
-    return this.LeafletFunctions.markerCluster();
+    return LeafletFunctions.markerCluster();
   }
 
   /**
@@ -35,7 +35,7 @@ class View {
   createPropertyMarker(propertyData) {
     const marker = L.marker([propertyData.LAT, propertyData.LON]);
 
-    this.bindPropertyMarkerPopup(marker, propertyData);
+    View.bindPropertyMarkerPopup(marker, propertyData);
 
     return marker;
   }

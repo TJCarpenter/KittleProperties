@@ -201,7 +201,7 @@ class Controller {
           propertyMarker = this.View.createPropertyMarker(property);
 
           // Add the individual property marker to the state cluster
-          this.View.addPropertyMarkerToStateCluster(stateMarkerCluster, propertyMarker);
+          View.addPropertyMarkerToStateCluster(stateMarkerCluster, propertyMarker);
         }
       });
 
