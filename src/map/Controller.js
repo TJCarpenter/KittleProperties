@@ -145,10 +145,10 @@ class Controller {
       );
 
       /**
-       * Pass the filtered data through a union filter and retreive only the ones that meet all 3 of
+       * Pass the filtered data through an intersection filter and retreive only the ones that meet all 3 of
        * the filters
        */
-      propertyData = Model.unionFilter(
+      propertyData = Model.intersection(
         searchFilterData,
         stateFilterData,
         checkboxFilterData,
