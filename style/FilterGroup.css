@@ -1,23 +1,5 @@
 /* ===== FILTER MENU ===== */
-.filter-menu {
-    background-color: rgba(13, 76, 192, 0.8);
-    box-shadow: #0940a7 0px 0px 15px;
-    cursor: default;
-    display: grid;
-    gap: 0px 0px;
-    grid-auto-flow: row;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 50px auto;
-    height: 100%;
-    position: relative;
-    white-space: nowrap;
-    width: 0%;
-    z-index: 500;
 
-    grid-template-areas:
-        "top top"
-        "FILTER-AREA FILTER-AREA";
-}
 
 
 /* ===== FILTER MENU TOP ===== */

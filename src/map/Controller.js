@@ -105,7 +105,7 @@ class Controller {
     const checked = (filter) => filter === true;
 
     // Check each filter to see if it is set
-    const isSeachQuery = $('#search_query').val() !== '';
+    const isSeachQuery = $('.js-search-input').val() !== '';
     const isStateSelect = $('#state_query').val() !== '';
     const hasHousingFilter = this.HousingTypeFilter.getFilter().some(checked);
     const hasAffordabilityFilter = this.AffordabilityFilter.getFilter().some(checked);
@@ -227,7 +227,7 @@ class Controller {
     $('#state_query').val('');
 
     // Clear the Search Query
-    $('#search_query').val('');
+    $('.js-search-input').val('');
 
     // Draw the map without any filters
     this.drawMap();

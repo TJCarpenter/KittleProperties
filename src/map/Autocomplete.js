@@ -6,7 +6,7 @@ class Autocomplete {
     this.currentFocus = -1;
 
     inputElement.on('input', () => {
-      this.closeAllLists();
+      Autocomplete.closeAllLists();
 
       if (!$(inputElement)[0].value) {
         return false;
@@ -14,7 +14,7 @@ class Autocomplete {
 
       this.currentFocus = -1;
 
-      $('.autocomplete').append(`<div class="autocomplete-items js-autocomplete-items" id="${$(inputElement)[0].id}autocomplete-list"></div>`);
+      $('.js-autocomplete').append(`<div class="autocomplete_items js-autocomplete-items" id="${$(inputElement)[0].id}autocomplete-list"></div>`);
 
       const query = $(inputElement)[0].value.toLowerCase();
 
@@ -22,13 +22,13 @@ class Autocomplete {
         const matches = data.filter((property) => property.toLowerCase().indexOf(query) >= 0);
 
         matches.forEach((match) => {
-          $('.autocomplete-items').append(
+          $('.js-autocomplete_items').append(
             $('<div></div>').html(
               `${match}<input type="hidden" value ="${match}">`,
             ).bind('click', () => {
-              $('#search_query').val(match);
-              $('#search').click();
-              this.closeAllLists();
+              $('.js-search-input').val(match);
+              $('.js-search-button').click();
+              Autocomplete.closeAllLists();
             }),
           );
         });
@@ -58,13 +58,13 @@ class Autocomplete {
         if (this.currentFocus > -1) {
 
           // Set the search query to the selected property
-          $('#search_query').val($('.autocomplete-active')[0].innerText);
+          $('.js-search-input').val($('.js-autocomplete_active')[0].innerText);
 
           // Click the search button to start the search
-          $('#search').click();
+          $('.js-search-button').click();
 
           // Close the list
-          this.closeAllLists();
+          Autocomplete.closeAllLists();
 
         }
       }
@@ -77,7 +77,7 @@ class Autocomplete {
    */
   static closeAllLists() {
     // Remove all properties from the dropdown list
-    $('.autocomplete-items').remove();
+    $('.js-autocomplete_items').remove();
   }
 
   /**
@@ -85,13 +85,13 @@ class Autocomplete {
    * @author Tyler
    */
   addActive() {
-    const autocompleteElements = $('.autocomplete-items').find('div');
+    const autocompleteElements = $('.js-autocomplete_items').find('div');
 
     if (autocompleteElements.length === 0) {
       return false;
     }
 
-    this.removeActive();
+    Autocomplete.removeActive();
 
     if (this.currentFocus >= autocompleteElements.length) {
       this.currentFocus = 0;
@@ -101,7 +101,7 @@ class Autocomplete {
       this.currentFocus = (autocompleteElements.length - 1);
     }
 
-    $(autocompleteElements[this.currentFocus]).addClass('autocomplete-active');
+    $(autocompleteElements[this.currentFocus]).addClass('js-autocomplete_active autocomplete_active');
 
     return true;
   }
@@ -111,6 +111,6 @@ class Autocomplete {
    * @author Tyler
    */
   static removeActive() {
-    $('.autocomplete-active').removeClass('autocomplete-active');
+    $('.js-autocomplete_active').removeClass('js-autocomplete_active autocomplete_active');
   }
 }

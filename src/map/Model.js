@@ -5,7 +5,7 @@ class Model {
     // this.dataEndpoint = 'https://kittleproperties.com/wp-json/api/v1/kittle';
     this.dataEndpoint = 'http://127.0.0.1/wp/wp-json/api/v1/kittle';
     this.response = this.getResponse();
-    this.Autocomplete = new Autocomplete($('#search_query'), this.getPropertyNames());
+    this.Autocomplete = new Autocomplete($('.js-search-input'), this.getPropertyNames());
   }
 
   /**

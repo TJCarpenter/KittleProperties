@@ -1,42 +1,30 @@
 <?php
+/**
+ * Builds a JSON file that contains all of the needed information for the
+ * map and listings.
+ *
+ * PHP version 7
+ *
+ * LICENSE: This source file is subject to version 3.01 of the PHP license
+ * that is available through the world-wide-web at the following URI:
+ * http://www.php.net/license/3_01.txt.  If you did not receive a copy of
+ * the PHP License and are unable to obtain it through the web, please
+ * send a note to license@php.net so we can mail you a copy immediately.
+ *
+ * @author    Tyler Carpenter <tylercarpenter1996@gmail.com>
+ * @copyright 2001-2021 The PHP Group
+ * @license   http://www.php.net/license/3_01.txt  PHP License 3.01
+ * @version   CVS: 1.0.0
+ * @since     File available since Release 1.0.0
+ * @return    JSON
+ */
 
-function getNumberOfPropertiesPerState($response_property)
-{
-    $property_list = $response_property->getValues();
-
-    $num_properties_per_state = array();
-
-    if (empty($property_list)) {
-        // Empty
-    } else {
-        foreach ($property_list as $row) {
-
-            $state = $row[4];
-
-            if (!isset($num_properties_per_state[$state])) {
-                $num_properties_per_state[$state] = 0;
-            }
-
-            $num_properties_per_state[$state] += 1;
-        }
-    }
-
-    return $num_properties_per_state;
-}
-
-function get_attachment_url_by_slug($slug)
-{
-    $args = array(
-        'post_type'      => 'attachment',
-        'name'           => sanitize_title($slug),
-        'posts_per_page' => 1,
-        'post_status'    => 'inherit',
-    );
-    $_header = get_posts($args);
-    $header  = $_header ? array_pop($_header) : null;
-    return $header ? wp_get_attachment_url($header->ID) : 'http://127.0.0.1/wp/wp-content/uploads/2021/07/kittle_placeholder-1024x683.png';
-}
-
+/**
+ * Builds a JSON file to be used for map display and listing displays
+ * If a new build fails, the last successful build is returned
+ *
+ * @return JSON
+ */
 function kittle_json()
 {
 
@@ -66,7 +54,7 @@ function kittle_json()
     $header_tags     = $response_tags->getValues()[0];
 
     // First we need to get and update the number of buildings per state
-    $num_properties_per_state = getNumberOfPropertiesPerState($response_property);
+    $num_properties_per_state = get_number_of_properties_per_state($response_property);
 
     $state_coordinate = json_decode(file_get_contents(str_replace(' ', '%20', plugin_dir_url(dirname(__FILE__, 2)) . 'json/state_coordinates.json')), true);
 
@@ -109,6 +97,7 @@ function kittle_json()
 
     }
 
+    // Check if the file exists. If not, make a cache file
     if (!file_exists(WP_PLUGIN_DIR . '/Kittle Map/json/cachedResponse.json')) {
         touch(WP_PLUGIN_DIR . '/Kittle Map/json/cachedResponse.json');
     }
@@ -119,4 +108,57 @@ function kittle_json()
     fclose($file);
 
     return json_encode($kittle_json);
+}
+
+/**
+ * Returns the number of properties in a given state
+ *
+ * @param Object $response_property The response from the sheet containing the values
+ *
+ * @return int
+ */
+function get_number_of_properties_per_state($response_property)
+{
+    $property_list = $response_property->getValues();
+
+    $num_properties_per_state = array();
+
+    if (empty($property_list)) {
+        // Empty
+        // TODO Handle Error
+    } else {
+        foreach ($property_list as $row) {
+
+            $state = $row[4];
+
+            if (!isset($num_properties_per_state[$state])) {
+                $num_properties_per_state[$state] = 0;
+            }
+
+            $num_properties_per_state[$state] += 1;
+        }
+    }
+
+    return $num_properties_per_state;
+}
+
+/**
+ * Function to retreive the image file name from the media library based on the given
+ * slug name
+ *
+ * @param String $slug The name of the slug extracted from the database
+ *
+ * @return String
+ */
+function get_attachment_url_by_slug($slug)
+{
+    $args = array(
+        'post_type'      => 'attachment',
+        'name'           => sanitize_title($slug),
+        'posts_per_page' => 1,
+        'post_status'    => 'inherit',
+    );
+    $_header = get_posts($args);
+    $header  = $_header ? array_pop($_header) : null;
+    return $header ? wp_get_attachment_url($header->ID) : 'http://127.0.0.1/wp/wp-content/uploads/2021/07/kittle_placeholder-1024x683.png';
 }
