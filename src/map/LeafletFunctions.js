@@ -2,19 +2,20 @@
 
 class LeafletFunctions {
   constructor() {
+    // Create a new map element
     this.map = L.map('map', {
-      center: [37.8, -96],
-      zoom: window.screen.width < 700 ? 4 : 5,
-      attributionControl: false,
-      zoomControl: false,
-      fadeAnimation: true,
-      zoomAnimation: true,
-      doubleClickZoom: false,
+      center: [37.8, -96], // Sets the center point based off of lat lon
+      zoom: window.screen.width < 700 ? 4 : 5, // Sets the zoom level of the map based on if the screen is mobile
+      attributionControl: false, // Remove the bottom right attribution tags
+      zoomControl: false, // Remove the zoom control to be added elsewhere
+      fadeAnimation: true, // Enable the fade animation 
+      zoomAnimation: true, // Enable the zoom animation
+      doubleClickZoom: false, // Disable the double click zoom mainly for mobile
     });
 
     // Set the max bounds of the map
-    const southWest = L.latLng(0, -200);
-    const northEast = L.latLng(60, 0);
+    const southWest = L.latLng(0, -200); // Set the bottom left 
+    const northEast = L.latLng(60, 0); // Set the top right
     const bounds = L.latLngBounds(southWest, northEast);
     this.map.setMaxBounds(bounds);
 

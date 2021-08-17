@@ -16,6 +16,7 @@
 # Private Files
 *.json
 *.lock
+*.xml
 
 
 # Distribution / packaging

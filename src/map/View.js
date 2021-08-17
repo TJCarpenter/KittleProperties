@@ -24,7 +24,7 @@ class View {
    * @returns {any}
    */
   createMarkerCluster() {
-    return this.LeafletFunctions.markerCluster();
+    return LeafletFunctions.markerCluster();
   }
 
   /**
@@ -35,7 +35,7 @@ class View {
   createPropertyMarker(propertyData) {
     const marker = L.marker([propertyData.LAT, propertyData.LON]);
 
-    this.bindPropertyMarkerPopup(marker, propertyData);
+    View.bindPropertyMarkerPopup(marker, propertyData);
 
     return marker;
   }
@@ -197,11 +197,11 @@ class View {
 
     this.LeafletFunctions.setFilterView();
 
-    $('.filter-menu').animate({
+    $('.js-filter-menu').animate({
       width: window.screen.width < 700 ? '100%' : '33%',
     }, 500);
 
-    $('.filter-menu .TOP, .filter-menu .FILTER-AREA').fadeIn();
+    $('.js-filter-menu_header, .js-filter-menu_body').fadeIn();
 
     $('.filterMenuGroup').fadeOut();
 
@@ -213,16 +213,13 @@ class View {
   closeFilterMenu(e) {
     this.LeafletFunctions.closeFilterView();
 
-    $('.filter-menu').animate({
+    $('.js-filter-menu').animate({
       width: '0%',
     }, 500);
 
-    $('.filter-menu .TOP, .filter-menu .FILTER-AREA').fadeOut();
+    $('.js-filter-menu_header, .js-filter-menu_body').fadeOut();
 
     $('.filterMenuGroup').fadeIn();
-
-    this.LeafletFunctions.enableMap();
-
   }
 
   /**
