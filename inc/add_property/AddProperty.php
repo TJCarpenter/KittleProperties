@@ -59,17 +59,24 @@
 
 <div class="newPropertyForm">
     <div class="input">
-        <form action="">
-            <h5 class="inputSectionTitle">Property Identifiers</h5>
-            <hr>
-            <div class="inputGroup">
-                <h5>ID</h5>
-                <input type="text" name="propertyID" id="propertyID">
+        <form action="http://127.0.0.1/wp/wp-json/api/v2/append" method="POST">
+
+            <div class="slide-form" id='slide_1'>
+                <h5 class="inputSectionTitle">Property Identifiers</h5>
+                <hr>
+                <div class="inputGroup">
+                    <h5>ID</h5>
+                    <input type="text" name="propertyID" id="propertyID">
+                </div>
+
+                <div class="inputGroup">
+                    <h5>Name</h5>
+                    <input type="text" name="propertyName" id="js-property-name">
+                </div>
             </div>
 
-            <div class="inputGroup">
-                <h5>Name</h5>
-                <input type="text" name="propertyName" id="js-property-name">
+            <div class="slide-form" id="slide_2">
+
             </div>
 
             <h5 class="inputSectionTitle">Address</h5>
@@ -187,8 +194,8 @@
 
             <div class="inputGroup">
                 <h5>Sister Property</h5>
-                <label for="propertySisterProperty">Sister Property</label>
-                <input type="checkbox" name="propertySisterProperty" id="propertySisterProperty">
+                <label for="propertyHasSisterProperty">Sister Property</label>
+                <input type="checkbox" name="propertyHasSisterProperty" id="propertyHasSisterProperty">
             </div>
 
             <div class="inputGroup">
@@ -199,50 +206,42 @@
             <div class="inputGroup">
                 <h5>Tags</h5>
                 <div class="checkboxGroup">
-                    <label for="tag1"> Tag 1</label>
+                    <label for="tag1">Under Construction</label>
                     <input type="checkbox" id="tag1" name="tag1" value="tag1">
                 </div>
                 <div class="checkboxGroup">
-                    <label for="tag2">Tag 2</label>
+                    <label for="tag2">Now Accepting Applications</label>
                     <input type="checkbox" id="tag2" name="tag2" value="tag2">
                 </div>
                 <div class="checkboxGroup">
-                    <label for="tag3">Tag 3</label>
+                    <label for="tag3">Immediate Move In’s Available</label>
                     <input type="checkbox" id="tag3" name="tag3" value="tag3">
                 </div>
                 <div class="checkboxGroup">
-                    <label for="tag4">Tag 4</label>
+                    <label for="tag4">Waitlist is Open</label>
                     <input type="checkbox" id="tag4" name="tag4" value="tag4">
                 </div>
-                <div class="checkboxGroup">
-                    <label for="tag5">Tag 5</label>
-                    <input type="checkbox" id="tag5" name="tag5" value="tag5">
-                </div>
-                <div class="checkboxGroup">
-                    <label for="tag6">Tag 6</label>
-                    <input type="checkbox" id="tag6" name="tag6" value="tag6">
-                </div>
-                <div class="checkboxGroup">
-                    <label for="tag7">Tag 7</label>
-                    <input type="checkbox" id="tag7" name="tag7" value="tag7">
-                </div>
-                <div class="checkboxGroup">
-                    <label for="tag8">Tag 8</label>
-                    <input type="checkbox" id="tag8" name="tag8" value="tag8">
-                </div>
-                <div class="checkboxGroup">
-                    <label for="tag9">Tag 9</label>
-                    <input type="checkbox" id="tag9" name="tag9" value="tag9">
-                </div>
             </div>
-
-
 
             <h5 class="inputSectionTitle">Media</h5>
             <hr>
             <div class="inputGroup">
                 <h5>Website</h5>
                 <input type="text" name="propertyWebsite" id="propertyWebsite">
+            </div>
+
+            <div class="inputGroup">
+                <h5>Phone Number</h5>
+                <input type="text" name="propertyPhoneNumber" id="propertyPhoneNumber">
+            </div>
+
+            <div class="inputGroup">
+                <h5>Email Address</h5>
+                <input type="text" name="propertyEmailAddress" id="propertyEmailAddress">
+            </div>
+
+            <div>
+                <button type="submit">Submit</button>
             </div>
 
 

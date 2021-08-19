@@ -50,6 +50,15 @@ add_action(
                 'callback' => 'kittle_properties_json',
             )
         );
+
+        register_rest_route(
+            'api/v2',
+            'append',
+            array(
+                'methods'  => 'POST',
+                'callback' => 'append_properties',
+            )
+        );
     }
 );
 
@@ -137,6 +146,27 @@ function Check_Kittle_Properties_json($served, $result, $request, $server)
     exit;
 }
 
+/**
+ * Checks that the Route is equal to the callback.
+ *
+ * @param mixed $served  *
+ * @param mixed $result  *
+ * @param mixed $request *
+ * @param mixed $server  *
+ *
+ * @return none
+ */
+function check_append_properties($served, $result, $request, $server)
+{
+    // Check if the route of the current REST API request is the callback
+    if ('/api/v2/append' !== $request->get_route()
+        || 'append_properties' !== $request->get_attributes()['callback']
+    ) {
+        return $served;
+    }
+}
+
 add_filter('rest_pre_serve_request', 'Check_Rentable_xml', 10, 4);
 add_filter('rest_pre_serve_request', 'Check_Kittle_json', 10, 4);
 add_filter('rest_pre_serve_request', 'Check_Kittle_Properties_json', 10, 4);
+add_filter('rest_pre_serve_request', 'check_append_properties', 10, 4);

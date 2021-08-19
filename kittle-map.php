@@ -31,6 +31,7 @@ require_once 'inc/Endpoints.php';
 require_once 'inc/endpoints/KittleJSON.php';
 require_once 'inc/endpoints/KittlePropertiesJSON.php';
 require_once 'inc/endpoints/RentableXML.php';
+require_once 'inc/endpoints/SendUpdate.php';
 
 // Scripts
 //require_once 'inc/Scripts.php';
