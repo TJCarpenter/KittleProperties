@@ -14,7 +14,7 @@ class Autocomplete {
 
       this.currentFocus = -1;
 
-      $('.js-autocomplete').append(`<div class="autocomplete_items js-autocomplete-items" id="${$(inputElement)[0].id}autocomplete-list"></div>`);
+      $('.js-autocomplete').append(`<div class="autocomplete_items js-autocomplete_items" id="${$(inputElement)[0].id}autocomplete-list"></div>`);
 
       const query = $(inputElement)[0].value.toLowerCase();
 
@@ -37,6 +37,7 @@ class Autocomplete {
     });
 
     inputElement.on('keydown', (e) => {
+
       if (e.keyCode === 40) { // Down Arrow
 
         // Moving down the list
@@ -55,6 +56,8 @@ class Autocomplete {
 
       } else if (e.keyCode === 13) { // Enter
 
+        console.log('Here');
+
         if (this.currentFocus > -1) {
 
           // Set the search query to the selected property
@@ -66,6 +69,13 @@ class Autocomplete {
           // Close the list
           Autocomplete.closeAllLists();
 
+        } else {
+
+          // Click the search button to start the search
+          $('.js-search-button').click();
+
+          // Close the list
+          Autocomplete.closeAllLists();
         }
       }
     });

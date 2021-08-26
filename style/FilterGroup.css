@@ -1,38 +1,3 @@
-/* ===== FILTER MENU ===== */
-
-
-
-/* ===== FILTER MENU TOP ===== */
-.top {
-    align-content: center;
-    color: #fff;
-    display: grid;
-    grid-area: TOP;
-    grid-template-columns: 1fr 1fr;
-}
-
-.top h2 {
-    margin: 0;
-    padding: 0 1rem;
-}
-
-/* ===== FILTER MENU CLOSE BUTTON ===== */
-.close {
-    align-self: center;
-    color: #fff;
-    cursor: pointer;
-    float: right;
-    height: 25px;
-    justify-self: right;
-    padding: 0 1rem;
-    position: relative;
-    z-index: 2;
-}
-
-.close img {
-    height: 25px;
-}
-
 /* ===== DROPDOWN SCROLL BAR ===== */
 .dropdown-content::-webkit-scrollbar {
     width: 14px;

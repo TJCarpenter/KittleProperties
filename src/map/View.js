@@ -247,4 +247,8 @@ class View {
 
     this.toggleDropdown();
   }
+
+  changeStyle() {
+    this.LeafletFunctions.changeStyle('tcarpenterkpg/ckst8kxkh3t2017lce6de0v6m');
+  }
 }

@@ -47,18 +47,20 @@
 
 
 </head>
+    <canvas></canvas>
     <div class="map-container">
         <div id="map">
             <div class="filter-menu js-filter-menu">
                 <div class="filter-menu_header js-filter-menu_header" style="display: none;">
-                    <h2>FILTER</h2>
-                    <span class="close js-filter-menu_close" id="closeFilterMenuButton"><img
-                            src="https://kittleproperties.com/wp-content/uploads/2021/07/close_white.png" alt="close"></span>
+                    <h2 class="filter-menu_header_title">FILTER</h2>
+                    <span class="js-filter-menu_header_close filter-menu_header_close" id="closeFilterMenuButton">
+                        <img class="filter-menu_header_close_img" src="https://kittleproperties.com/wp-content/uploads/2021/07/close_white.png" alt="close">
+                    </span>
                 </div>
-                <div class="filter-menu_body js-filter-menu_body" style="display: none;"> <!-- Initially Set -->
+                <div class="filter-menu_body js-filter-menu_body" style="display: none;">
                     <div class="filter-group_text autocomplete js-autocomplete">
                         <input class="js-search-input search-input" type="text" placeholder="Search Property" name="search" autocomplete="off">
-                        <button class="js-search-clear-button" type="button"><img src="https://kittleproperties.com/wp-content/uploads/2021/07/close_white.png" alt="clear"></button>
+                        <button class="js-search-clear-button" type="button"><img src="http://127.0.0.1/wp/wp-content/uploads/2021/08/clear.png" alt="clear"></button>
                         <button class="js-search-button" type="button"><img
                                 src="https://kittleproperties.com/wp-content/uploads/2021/07/search_primary.png" alt="search"></button>
                     </div>

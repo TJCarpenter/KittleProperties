@@ -257,7 +257,7 @@ class Model {
    * Function that closes the autocomplete results list
    * @returns {any}
    */
-  CloseAutoComplete() {
-    this.Autocomplete.closeAllLists();
+  closeAutoComplete() {
+    Autocomplete.closeAllLists();
   }
 }

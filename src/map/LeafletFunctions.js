@@ -30,8 +30,7 @@ class LeafletFunctions {
       position: 'bottomright',
     }).addTo(this.map);
 
-    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    this.tileLayer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
       maxZoom: 18,
       id: 'tcarpenterkpg/ckquys6760fga17qs4z72e2mp',
       tileSize: 512,
@@ -56,7 +55,10 @@ class LeafletFunctions {
     }).addTo(this.map);
 
     // Create the filter menu button
-    L.easyButton('<div class="js-open-filter-menu filterMenuGroup" ><img class="filter-image" id="filterMenuButton" src="https://kittleproperties.com/wp-content/uploads/2021/08/funnel_alt.png"><h2>FILTER</h2></div>', () => {}).addTo(this.map);
+    L.easyButton('<div class="js-open-filter-menu filterMenuGroup" ><img class="js-filter_image filter-image" id="filterMenuButton" src="https://kittleproperties.com/wp-content/uploads/2021/08/funnel_alt.png"><h2 class="js-filter_title">FILTER</h2></div>', () => {}).addTo(this.map);
+
+    // Hidden Layer
+    this.hiddenLayer = false;
   }
 
   /**
@@ -68,6 +70,56 @@ class LeafletFunctions {
       onEachFeature: this.mapEventHandler.bind(this),
       style: this.polyStyle.bind(this),
     }).addTo(this.layerGroup);
+  }
+
+  changeStyle(style) {
+    this.tileLayer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+      maxZoom: 18,
+      id: 'tcarpenterkpg/ckst939nu0j9h17nzhrr70ter',
+      tileSize: 512,
+      zoomOffset: -1,
+      accessToken: mapbox.token,
+    }).addTo(this.map);
+
+    this.layerGroup.eachLayer((layer) => {
+
+      let layerID = Object.keys(layer._layers);
+      let currentColor = layer._layers[layerID].options.fillColor;
+
+      if (currentColor === '#3f85c6') {
+        layer.setStyle({
+          fillColor: '#004b2a'
+        })
+      }
+      if (currentColor === '#6897d0') {
+        layer.setStyle({
+          fillColor: '#0e5731'
+        })
+      }
+      if (currentColor === '#82a6d8') {
+        layer.setStyle({
+          fillColor: '#1c6338'
+        })
+      }
+      if (currentColor === '#9cb7e0') {
+        layer.setStyle({
+          fillColor: '#28703e'
+        })
+      }
+      if (currentColor === '#b8cae8') {
+        layer.setStyle({
+          fillColor: '#347c45'
+        })
+      }
+      if (currentColor === '#d4def1') {
+        layer.setStyle({
+          fillColor: '#41894b'
+        })
+      }
+    });
+
+    this.hiddenLayer = true;
+
   }
 
   /**
@@ -139,7 +191,7 @@ class LeafletFunctions {
   polyStyle(feature) {
     // TODO Make some of these settings available to change in the settings screen
     return {
-      fillColor: LeafletFunctions.getStateBuildingDensityColor(feature.properties.BUILDINGS),
+      fillColor: this.getStateBuildingDensityColor(feature.properties.BUILDINGS),
       weight: 2,
       opacity: 1,
       color: '#fff',
@@ -153,26 +205,44 @@ class LeafletFunctions {
    * @param {Integer} buildings Number of buildings that a given state has
    * @returns {String}
    */
-  static getStateBuildingDensityColor(buildings) {
+  getStateBuildingDensityColor(buildings) {
     // TODO Make these colors available to change in the settings screen
     // TODO Make the cutoffs available to change in the settings screen
     if (buildings >= 15) {
+      if (this.hiddenLayer) {
+        return '#004b2a';
+      }
       return '#3f85c6';
     }
     if (buildings >= 12) {
+      if (this.hiddenLayer) {
+        return '#0e5731';
+      }
       return '#6897d0';
     }
     if (buildings >= 9) {
+      if (this.hiddenLayer) {
+        return '#1c6338'
+      }
       return '#82a6d8';
     }
     if (buildings >= 5) {
+      if (this.hiddenLayer) {
+        return '#28703e';
+      }
       return '#9cb7e0';
     }
     if (buildings >= 3) {
+      if (this.hiddenLayer) {
+        return '#347c45'
+      }
       return '#b8cae8';
     }
 
     // Default Color
+    if (this.hiddenLayer) {
+      return '#41894b'
+    }
     return '#d4def1';
   }
 

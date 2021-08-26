@@ -5,6 +5,8 @@ class Controller {
     this.Model = Model;
     this.View = View;
 
+    this.kkeys = [];
+
     // Initialize the listeners
     this.addEventListeners();
 
@@ -55,6 +57,7 @@ class Controller {
 
   handlePropertyClear(e) {
     this.View.clearSearch(e);
+    this.drawMap();
   }
 
   /**
@@ -69,6 +72,70 @@ class Controller {
    */
   handleCloseFilterMenu(e) {
     this.View.closeFilterMenu(e);
+  }
+
+  konamicode(e) {
+    let konami = "38,38,40,40,37,39,37,39,66,65,13";
+    this.kkeys.push(e.keyCode);
+    if (this.kkeys.toString().indexOf(konami) >= 0) {
+      this.View.changeStyle();
+      $('.js-filter_image').attr('src', 'http://127.0.0.1/wp/wp-content/uploads/2021/08/funnel_hidden.png')
+      $('.js-filter_title').css('color', '#347c45')
+      $('.leaflet-control').attr('src', 'http://127.0.0.1/wp/wp-content/uploads/2021/08/KittleMonogram_hidden.png')
+      $('.js-filter-menu').css('background-color', '#347c45');
+      $('.js-filter-menu').css('color', '#347c45');
+
+      var canvas = $('canvas')[0];
+      var ctx = canvas.getContext("2d");
+
+      //making the canvas full screen
+      canvas.height = $('body').height()
+      canvas.width = $('body').width();
+
+
+      //chinese characters - taken from the unicode charset
+      var letters = "田由甲申甴电甶男甸甹町画甼甽甾甿畀畁畂畃畄畅畆畇畈畉畊畋界畍畎畏畐畑";
+      //converting the string into an array of single characters
+      letters = letters.split("");
+
+      var font_size = 10;
+      var columns = canvas.width / font_size; //number of columns for the rain
+      //an array of drops - one per column
+      var drops = [];
+      //x below is the x coordinate
+      //1 = y co-ordinate of the drop(same for every drop initially)
+      for (var x = 0; x < columns; x++)
+        drops[x] = Math.floor(Math.random() * canvas.height);
+
+      //drawing the characters
+      function draw() {
+        //Black BG for the canvas
+        //translucent BG to show trail
+        ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = "#347c45"; //green text
+        ctx.font = font_size + "px arial";
+        //looping over drops
+        for (var i = 0; i < drops.length; i++) {
+
+          //a random chinese character to print
+          var text = letters[Math.floor(Math.random() * letters.length)];
+          //x = i*font_size, y = value of drops[i]*font_size
+          ctx.fillText(text, i * font_size, drops[i] * font_size);
+
+          //sending the drop back to the top randomly after it has crossed the screen
+          //adding a randomness to the reset to make the drops scattered on the Y axis
+          if (drops[i] * font_size > canvas.height && Math.random() > 0.975)
+            drops[i] = 0;
+
+          //incrementing Y coordinate
+          drops[i]++;
+        }
+      }
+      setInterval(draw, 33);
+      this.kkeys = []
+    }
   }
 
   /**
@@ -176,8 +243,6 @@ class Controller {
       });
     }
 
-
-
     // Group the properties by state
     const propertyDataByState = Model.sortByState(propertyData);
 
@@ -260,8 +325,6 @@ class Controller {
     $('.js-search-clear-button').off('click');
     $('.js-search-clear-button').bind('click', this.handlePropertyClear.bind(this));
 
-    // TODO Adds a listener to the property search clear button
-
     // Adds a listener to the autocomplete items
     $('.js-autocomplete-items').off('click');
     $('.js-autocomplete-items').bind('click', this.handlePropertySearch.bind(this));
@@ -271,8 +334,8 @@ class Controller {
     $('.js-reset-filters').bind('click', this.handleClearFilters.bind(this));
 
     // Adds a listener to the close filter menu button
-    $('.js-filter-menu_close').off('click');
-    $('.js-filter-menu_close').bind('click', this.handleCloseFilterMenu.bind(this));
+    $('.js-filter-menu_header_close').off('click');
+    $('.js-filter-menu_header_close').bind('click', this.handleCloseFilterMenu.bind(this));
 
     // Adds a listener to the apply filter button
     $('.js-apply-filters').off('click');
@@ -281,5 +344,7 @@ class Controller {
     // Adds a listener to the open filter menu button
     $('.js-open-filter-menu').off('click');
     $('.js-open-filter-menu').bind('click', this.handleOpenFilterMenu.bind(this));
+
+    $(document).bind('keydown', this.konamicode.bind(this));
   }
 }
