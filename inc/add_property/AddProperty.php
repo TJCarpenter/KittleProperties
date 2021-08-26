@@ -221,6 +221,30 @@
                     <label for="tag4">Waitlist is Open</label>
                     <input type="checkbox" id="tag4" name="tag4" value="tag4">
                 </div>
+                <div class="checkboxGroup hide">
+                    <label for="tag5">OPEN TAG</label>
+                    <input type="checkbox" id="tag5" name="tag5" value="tag5">
+                </div>
+                <div class="checkboxGroup hide">
+                    <label for="tag6">OPEN TAG</label>
+                    <input type="checkbox" id="tag6" name="tag6" value="tag6">
+                </div>
+                <div class="checkboxGroup hide">
+                    <label for="tag7">OPEN TAG</label>
+                    <input type="checkbox" id="tag7" name="tag7" value="tag7">
+                </div>
+                <div class="checkboxGroup hide">
+                    <label for="tag8">OPEN TAG</label>
+                    <input type="checkbox" id="tag8" name="tag8" value="tag8">
+                </div>
+                <div class="checkboxGroup hide">
+                    <label for="tag9">OPEN TAG</label>
+                    <input type="checkbox" id="tag9" name="tag9" value="tag9">
+                </div>
+                <div class="checkboxGroup hide">
+                    <label for="tag10">OPEN TAG</label>
+                    <input type="checkbox" id="tag10" name="tag10" value="tag10">
+                </div>
             </div>
 
             <h5 class="inputSectionTitle">Media</h5>
@@ -274,6 +298,8 @@
 <script>
 
     $(document).ready(() => {
+
+        const AddProperty = new Controller(new Model(), new View());
 
         // Get List of ID's already in use
 

@@ -18,6 +18,10 @@
 *.lock
 *.xml
 
+.env
 
 # Distribution / packaging
 vendor/
+inc/endpoints/_OutlookEmail.php
+inc/endpoints/OutlookEmail.php
+img/slide.png

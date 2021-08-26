@@ -37,16 +37,16 @@ function append_properties()
         $property->housingType = $_POST['propertyHousingType'];
 
         // Tags
-        $property->tag1  = isset($_POST['tag1']) ? 'TRUE' : 'FALSE'; // Under Construction
-        $property->tag2  = isset($_POST['tag2']) ? 'TRUE' : 'FALSE'; // Now Accepting Applications
-        $property->tag3  = isset($_POST['tag3']) ? 'TRUE' : 'FALSE'; // Imediate Move In's Available
-        $property->tag4  = isset($_POST['tag4']) ? 'TRUE' : 'FALSE'; // Waitlist is Open
-        $property->tag5  = isset($_POST['tag5']) ? 'TRUE' : 'FALSE';
-        $property->tag6  = isset($_POST['tag6']) ? 'TRUE' : 'FALSE';
-        $property->tag7  = isset($_POST['tag7']) ? 'TRUE' : 'FALSE';
-        $property->tag8  = isset($_POST['tag8']) ? 'TRUE' : 'FALSE';
-        $property->tag9  = isset($_POST['tag9']) ? 'TRUE' : 'FALSE';
-        $property->tag10 = isset($_POST['tag10']) ? 'TRUE' : 'FALSE';
+        $property->tag1 = isset($_POST['tag1']) ? 'TRUE' : 'FALSE'; // Under Construction
+        $property->tag2 = isset($_POST['tag2']) ? 'TRUE' : 'FALSE'; // Now Accepting Applications
+        $property->tag3 = isset($_POST['tag3']) ? 'TRUE' : 'FALSE'; // Imediate Move In's Available
+        $property->tag4 = isset($_POST['tag4']) ? 'TRUE' : 'FALSE'; // Waitlist is Open
+        // $property->tag5  = isset($_POST['tag5']) ? 'TRUE' : 'FALSE';
+        // $property->tag6  = isset($_POST['tag6']) ? 'TRUE' : 'FALSE';
+        // $property->tag7  = isset($_POST['tag7']) ? 'TRUE' : 'FALSE';
+        // $property->tag8  = isset($_POST['tag8']) ? 'TRUE' : 'FALSE';
+        // $property->tag9  = isset($_POST['tag9']) ? 'TRUE' : 'FALSE';
+        // $property->tag10 = isset($_POST['tag10']) ? 'TRUE' : 'FALSE';
 
         // Property Has Sister Property
         $property->hasSisterProperty = isset($_POST['propertyHasSisterProperty']) ? 'TRUE' : 'FALSE';

@@ -178,3 +178,14 @@
     background-color: #0f5ae6 !important;
     color: #000;
 }
+
+/* ===== GLOBAL CLASSES ===== */
+.hide {
+    display: none !important;
+}
+
+/* TODO Remove for production */
+h1:before,
+h2:before {
+    content: none !important;
+}
