@@ -75,14 +75,14 @@ class Controller {
    * Function to set the filters based on the selected checkboxes
    */
   checkboxFilterSelection() {
-    const housingTypeSelection = $('[name="housing_type"]').map(() => [this.checked]);
+    const housingTypeSelection = $('[name="housing_type"]').map((_key, element) => element.checked);
     this.HousingTypeFilter.setFilter(
       housingTypeSelection[0], // Family
       housingTypeSelection[1], // Senior
       housingTypeSelection[2], // Student (Not Used {default: false})
     );
 
-    const affordabilitySelection = $('[name="affordability"]').map(() => [this.checked]);
+    const affordabilitySelection = $('[name="affordability"]').map((_key, element) => element.checked);
     this.AffordabilityFilter.setFilter(
       affordabilitySelection[0], // Affordable
       affordabilitySelection[1], // Luxury
@@ -106,7 +106,8 @@ class Controller {
 
     // Check each filter to see if it is set
     const isSeachQuery = $('.js-search-input').val() !== '';
-    const isStateSelect = $('#state_query').val() !== '';
+    const isStateSelect = $('.js-state-input').val() !== '';
+    console.log(isStateSelect);
     const hasHousingFilter = this.HousingTypeFilter.getFilter().some(checked);
     const hasAffordabilityFilter = this.AffordabilityFilter.getFilter().some(checked);
 
@@ -136,7 +137,7 @@ class Controller {
       const searchFilterData = await this.Model.findPropertyNames($('.js-search-input').val());
 
       // Get the data that passes the state select filter
-      const stateFilterData = await this.Model.getPropertiesFromState($('#state_query').val());
+      const stateFilterData = await this.Model.getPropertiesFromState($('.js-state-input').val());
 
       // Get the data that passes the housing type and/or the affordability filter
       const checkboxFilterData = await this.Model.findPropertiesByFilters(
@@ -220,17 +221,14 @@ class Controller {
     $('[name="housing_type"]').prop('checked', false);
     $('[name="affordability"]').prop('checked', false);
 
-    // Update the checkbox filters
-    this.checkboxFilterSelection();
-
     // Clear the State Selection
-    $('#state_query').val('');
+    $('.js-state-input').val('');
 
     // Clear the Search Query
     $('.js-search-input').val('');
 
-    // Draw the map without any filters
-    this.drawMap();
+    // Update the checkbox filters
+    this.checkboxFilterSelection();
   }
 
   /**
@@ -269,12 +267,12 @@ class Controller {
     $('.js-autocomplete-items').bind('click', this.handlePropertySearch.bind(this));
 
     // Adds a listenter to the clear filters button
-    $('.js-reset-filters #reset').off('click');
-    $('.js-reset-filters #reset').bind('click', this.handleClearFilters.bind(this));
+    $('.js-reset-filters').off('click');
+    $('.js-reset-filters').bind('click', this.handleClearFilters.bind(this));
 
     // Adds a listener to the close filter menu button
-    $('.js-close-filter-menu').off('click');
-    $('.js-close-filter-menu').bind('click', this.handleCloseFilterMenu.bind(this));
+    $('.js-filter-menu_close').off('click');
+    $('.js-filter-menu_close').bind('click', this.handleCloseFilterMenu.bind(this));
 
     // Adds a listener to the apply filter button
     $('.js-apply-filters').off('click');

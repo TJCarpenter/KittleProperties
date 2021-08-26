@@ -299,7 +299,7 @@
 
     $(document).ready(() => {
 
-        const AddProperty = new Controller(new Model(), new View());
+        //const AddProperty = new Controller(new Model(), new View());
 
         // Get List of ID's already in use
 

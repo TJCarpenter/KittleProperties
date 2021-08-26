@@ -205,7 +205,7 @@ class LeafletFunctions {
    */
   zoomToFeature(e) {
     // Sets the value of the state to the state query input
-    $('#state_query').val(e.target.feature.properties.abbrevition);
+    $('.js-state-input').val(e.target.feature.properties.abbrevition);
 
     // Fits the bounds of the poly within the maps screen
     this.map.fitBounds(e.target.getBounds());

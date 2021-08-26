@@ -38,16 +38,16 @@ wp_register_script('viewVariables', plugin_dir_url(dirname(__FILE__, 2)) . '/src
 
 // Localize the script with new data
 $translation_array_tag = array(
-    'tagName1'  => __('Accepting Applicants', 'plugin-domain'),
-    'tagName2'  => __('New Construction', 'pugin-domain'),
-    'tagName3'  => __('Affordable', 'pugin-domain'),
-    'tagName4'  => __('Family', 'pugin-domain'),
-    'tagName5'  => __('Pet Friendly', 'pugin-domain'),
-    'tagName6'  => __('Clubhouse', 'pugin-domain'),
-    'tagName7'  => __('Luxury', 'pugin-domain'),
-    'tagName8'  => __('Utilities required', 'pugin-domain'),
-    'tagName9'  => __('Senior', 'pugin-domain'),
-    'tagName10' => __('Student', 'pugin-domain'),
+    'tagName1'  => __('Under Construction', 'plugin-domain'),
+    'tagName2'  => __('Now Accepting Applications', 'pugin-domain'),
+    'tagName3'  => __('Immediate Move In’s Available', 'pugin-domain'),
+    'tagName4'  => __('Waitlist is Open', 'pugin-domain'),
+    'tagName5'  => __('OPEN TAG', 'pugin-domain'),
+    'tagName6'  => __('OPEN TAG', 'pugin-domain'),
+    'tagName7'  => __('OPEN TAG', 'pugin-domain'),
+    'tagName8'  => __('OPEN TAG', 'pugin-domain'),
+    'tagName9'  => __('OPEN TAG', 'pugin-domain'),
+    'tagName10' => __('OPEN TAG', 'pugin-domain'),
 );
 wp_localize_script('viewVariables', 'viewVariables', $translation_array_tag);
 

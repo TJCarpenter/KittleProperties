@@ -63,11 +63,11 @@
                                 src="https://kittleproperties.com/wp-content/uploads/2021/07/search_primary.png" alt="search"></button>
                     </div>
                     <div class="filter-group_text dropdown">
-                        <input id="state_query" type="text" value="" placeholder="Select State" name="state" readonly>
-                        <button class="dropdown-button js-dropdown-button"><img
+                        <input id="state_query" class="js-state-input" type="text" value="" placeholder="Select State" name="state" readonly>
+                        <button class="js-dropdown-button"><img
                                 src="https://kittleproperties.com/wp-content/uploads/2021/07/dropdown_primary.png"
                                 alt="dropdown"></button>
-                        <div class="dropdown-content">
+                        <div class="js-dropdown-content dropdown-content">
 							<span class="dropdown-item js-dropdown-item" id="AL" >Alabama</span>
                             <span class="dropdown-item js-dropdown-item" id="AK" >Alaska</span>
 							<span class="dropdown-item js-dropdown-item" id="AZ" >Arizona</span>
@@ -123,41 +123,34 @@
                     <div class="filter-group">
                         <h3>HOUSING TYPE</h3>
                         <label class="check_container">Family Housing
-                            <input type="checkbox" class="js-checkbox-filter" id="family_housing" name="housing_type" data-index="family"
-                                data-col="10" />
+                            <input type="checkbox" class="js-checkbox-filter" name="housing_type" />
                             <span class="checkmark"></span>
                         </label>
                         <label class="check_container">Senior Housing
-                            <input type="checkbox" class="js-checkbox-filter" id="senior_housing" name="housing_type" data-index="senior"
-                                data-col="10" />
+                            <input type="checkbox" class="js-checkbox-filter" name="housing_type"/>
                             <span class="checkmark"></span>
                         </label>
                         <!--<label class="check_container">Student Housing
-                            <input type="checkbox" class="js-checkbox-filter" id="student_housing" name="housing_type" data-index="student"
-                                data-col="10" />
+                            <input type="checkbox" class="js-checkbox-filter" name="housing_type" />
                             <span class="checkmark"></span>
                         </label>-->
                     </div>
                     <div class="filter-group">
                         <h3>AFFORDABILITY</h3>
                         <label class="check_container">Affordable Housing
-                            <input type="checkbox" class="js-checkbox-filter" id="affordable_housing" name="affordability" data-index="affordable"
-                                data-col="9" />
+                            <input type="checkbox" class="js-checkbox-filter" name="affordability" />
                             <span class="checkmark"></span>
                         </label>
                         <label class="check_container">Luxury Apartments
-                            <input type="checkbox" class="js-checkbox-filter" id="luxury_apartments" name="affordability" data-index="luxury"
-                                data-col="9" />
+                            <input type="checkbox" class="js-checkbox-filter" name="affordability" />
                             <span class="checkmark"></span>
                         </label>
                         <label class="check_container">Market Rate Housing
-                            <input type="checkbox" class="js-checkbox-filter" id="marketrate_housing" name="affordability" data-index="market rate"
-                                data-col="9" />
+                            <input type="checkbox" class="js-checkbox-filter" name="affordability" />
                             <span class="checkmark"></span>
                         </label>
                         <label class="check_container">Market Rate & Affordable
-                            <input type="checkbox" id="marketrate_affordable_housing" name="affordability"
-                                data-index="market rate/affordable" data-col="9" />
+                            <input type="checkbox" class="js-checkbox-filter" name="affordability"/>
                             <span class="checkmark"></span>
                         </label>
                     </div>

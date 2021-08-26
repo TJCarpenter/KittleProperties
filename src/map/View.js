@@ -5,8 +5,8 @@ class View {
     this.LeafletFunctions = new LeafletFunctions();
 
     this.listingArea = $('#listingArea');
-    this.dropdownButton = $('.dropdown-button');
-    this.dropdownContent = $('.dropdown-content');
+    this.dropdownButton = $('.js-dropdown-button');
+    this.dropdownContent = $('.js-dropdown-content');
     this.searchBar = $('.js-search-input');
   }
 
@@ -203,7 +203,7 @@ class View {
 
     $('.js-filter-menu_header, .js-filter-menu_body').fadeIn();
 
-    $('.filterMenuGroup').fadeOut();
+    $('.js-open-filter-menu').fadeOut();
 
   }
 
@@ -219,7 +219,7 @@ class View {
 
     $('.js-filter-menu_header, .js-filter-menu_body').fadeOut();
 
-    $('.filterMenuGroup').fadeIn();
+    $('.js-open-filter-menu').fadeIn();
   }
 
   /**
@@ -243,7 +243,7 @@ class View {
    * Function to add the selected dropdown item to the filter and close the dropdown
    */
   dropdownContentSelect(e) {
-    $('#state_query').val(e.target.id);
+    $('.js-state-input').val(e.target.id);
 
     this.toggleDropdown();
   }
