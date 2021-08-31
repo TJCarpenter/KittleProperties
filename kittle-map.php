@@ -35,7 +35,7 @@ require_once 'inc/endpoints/SendUpdate.php';
 // require_once 'inc/endpoints/_OutlookEmail.php';
 
 // Scripts
-//require_once 'inc/Scripts.php';
+require_once 'inc/Scripts.php';
 
 // Styles
 //require_once 'inc/Styles.php';

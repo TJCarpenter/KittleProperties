@@ -88,48 +88,37 @@ class Controller {
       var canvas = $('canvas')[0];
       var ctx = canvas.getContext("2d");
 
-      //making the canvas full screen
       canvas.height = $('body').height()
       canvas.width = $('body').width();
 
-
-      //chinese characters - taken from the unicode charset
-      var letters = "田由甲申甴电甶男甸甹町画甼甽甾甿畀畁畂畃畄畅畆畇畈畉畊畋界畍畎畏畐畑";
-      //converting the string into an array of single characters
+      var letters = "ᄀᄁᄂᄃᄄᄅᄆᄇᄈᄉᄊᄋᄌᄍᄎᄏᆀᆁᆂᆃᆄᆅᆆᆇᆈᆉᆊᆋᆌᆍᆎᆏᇠᇡᇢᇣᇤᇥᇦᇧᇨᇩᇪᇫᇬᇭᇮᇯ";
       letters = letters.split("");
 
       var font_size = 10;
-      var columns = canvas.width / font_size; //number of columns for the rain
-      //an array of drops - one per column
+      var columns = canvas.width / font_size;
+
       var drops = [];
-      //x below is the x coordinate
-      //1 = y co-ordinate of the drop(same for every drop initially)
+
       for (var x = 0; x < columns; x++)
         drops[x] = Math.floor(Math.random() * canvas.height);
 
-      //drawing the characters
       function draw() {
-        //Black BG for the canvas
-        //translucent BG to show trail
+
         ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        ctx.fillStyle = "#347c45"; //green text
+        ctx.fillStyle = "#347c45";
         ctx.font = font_size + "px arial";
-        //looping over drops
+
         for (var i = 0; i < drops.length; i++) {
 
-          //a random chinese character to print
           var text = letters[Math.floor(Math.random() * letters.length)];
-          //x = i*font_size, y = value of drops[i]*font_size
+
           ctx.fillText(text, i * font_size, drops[i] * font_size);
 
-          //sending the drop back to the top randomly after it has crossed the screen
-          //adding a randomness to the reset to make the drops scattered on the Y axis
           if (drops[i] * font_size > canvas.height && Math.random() > 0.975)
             drops[i] = 0;
 
-          //incrementing Y coordinate
           drops[i]++;
         }
       }
@@ -174,7 +163,6 @@ class Controller {
     // Check each filter to see if it is set
     const isSeachQuery = $('.js-search-input').val() !== '';
     const isStateSelect = $('.js-state-input').val() !== '';
-    console.log(isStateSelect);
     const hasHousingFilter = this.HousingTypeFilter.getFilter().some(checked);
     const hasAffordabilityFilter = this.AffordabilityFilter.getFilter().some(checked);
 
@@ -308,7 +296,7 @@ class Controller {
   addEventListeners() {
     // Adds listener to the dropdown button
     $('.js-dropdown-button').off('click');
-    $('.js-dropdown-button').bind('click', this.handleToggleDropdown.bind(this));
+    $('.js-dropdown-button').bind('click focusout', this.handleToggleDropdown.bind(this));
 
     // Adds listener to the dropdown items
     $('.js-dropdown-item').off('click');

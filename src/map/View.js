@@ -236,7 +236,6 @@ class View {
         height: '50vh',
       });
     }
-
   }
 
   /**

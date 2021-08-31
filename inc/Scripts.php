@@ -10,35 +10,47 @@ include_once 'Styles.php';
 
 function LoadScripts()
 {
-    // Affordability
-    $affordabilityFilterVersion = date("ymd-Gis", filemtime(plugin_dir_path(__FILE__) . 'src/Map/AffordabilityFilter.js'));
-    wp_enqueue_script('AffordabilityFilter', plugins_url('src/AffordabilityFilter.js', __FILE__), array(), $affordabilityFilterVersion);
+    // // Affordability
+    // $affordabilityFilterVersion = date("ymd-Gis", filemtime(plugin_dir_path(dirname(__FILE__, 1)) . 'src/map/AffordabilityFilter.js'));
+    // wp_enqueue_script('AffordabilityFilter', plugins_url('src/map/AffordabilityFilter.js', dirname(__FILE__, 1)), array(), $affordabilityFilterVersion);
 
-    // Autocomplete
-    $autocompleteVersion = date("ymd-Gis", filemtime(plugin_dir_path(__FILE__) . 'src/Map/Autocomplete.js'));
-    wp_enqueue_script('Autocomplete', plugins_url('src/Autocomplete.js', __FILE__), array(), $autocompleteVersion);
+    // // Autocomplete
+    // $autocompleteVersion = date("ymd-Gis", filemtime(plugin_dir_path(dirname(__FILE__, 1)) . 'src/map/Autocomplete.js'));
+    // wp_enqueue_script('Autocomplete', plugins_url('src/map/Autocomplete.js', __FILE__), array(), $autocompleteVersion);
 
-    // Controller
-    $controllerVersion = date("ymd-Gis", filemtime(plugin_dir_path(__FILE__) . 'src/Map/Controller.js'));
-    wp_enqueue_script('Controller', plugins_url('src/Controller.js', __FILE__), array(), $controllerVersion);
+    // // Controller
+    // $controllerVersion = date("ymd-Gis", filemtime(plugin_dir_path(dirname(__FILE__, 1)) . 'src/map/Controller.js'));
+    // wp_enqueue_script('Controller', plugins_url('src/map/Controller.js', dirname(__FILE__, 1)), array(), $controllerVersion);
 
-    // Housing Type Filter
-    $housingFilterVersion = date("ymd-Gis", filemtime(plugin_dir_path(__FILE__) . 'src/Map/HousingTypeFilter.js'));
-    wp_enqueue_script('HousingTypeFilter', plugins_url('src/HousingTypeFilter.js', __FILE__), array(), $housingFilterVersion);
+    // // Housing Type Filter
+    // $housingFilterVersion = date("ymd-Gis", filemtime(plugin_dir_path(dirname(__FILE__, 1)) . 'src/map/HousingTypeFilter.js'));
+    // wp_enqueue_script('HousingTypeFilter', plugins_url('src/map/HousingTypeFilter.js', dirname(__FILE__, 1)), array(), $housingFilterVersion);
 
-    // Leaflet Functions
-    $leafletFunctionsVersion = date("ymd-Gis", filemtime(plugin_dir_path(__FILE__) . 'src/Map/LeafletFunctions.js'));
-    wp_enqueue_script('LeafletFunctions', plugins_url('src/LeafletFunctions.js', __FILE__), array(), $leafletFunctionsVersion);
+    // // Leaflet Functions
+    // $leafletFunctionsVersion = date("ymd-Gis", filemtime(plugin_dir_path(dirname(__FILE__, 1)) . 'src/map/LeafletFunctions.js'));
+    // wp_enqueue_script('LeafletFunctions', plugins_url('src/map/LeafletFunctions.js', dirname(__FILE__, 1)), array(), $leafletFunctionsVersion);
 
-    // Model
-    $modelVersion = date("ymd-Gis", filemtime(plugin_dir_path(__FILE__) . 'src/Map/Model.js'));
-    wp_enqueue_script('Model', plugins_url('src/Model.js', __FILE__), array(), $modelVersion);
+    // // Model
+    // $modelVersion = date("ymd-Gis", filemtime(plugin_dir_path(dirname(__FILE__, 1)) . 'src/map/Model.js'));
+    // wp_enqueue_script('Model', plugins_url('src/map/Model.js', dirname(__FILE__, 1)), array(), $modelVersion);
 
-    // View
-    $viewVersion = date("ymd-Gis", filemtime(plugin_dir_path(__FILE__) . 'src/Map/View.js'));
-    wp_enqueue_script('View', plugins_url('src/View.js', __FILE__), array(), $viewVersion);
+    // // View
+    // $viewVersion = date("ymd-Gis", filemtime(plugin_dir_path(dirname(__FILE__, 1)) . 'src/map/View.js'));
+    // wp_enqueue_script('View', plugins_url('src/map/View.js', dirname(__FILE__, 1)), array(), $viewVersion);
 
-    LoadStyles();
+    // Add Model
+    $addViewVersion = date("ymd-Gis", filemtime(plugin_dir_path(dirname(__FILE__, 1)) . 'src/add_property/AddModel.js'));
+    wp_enqueue_script('View', plugins_url('src/add_property/AddModel.js', dirname(__FILE__, 1)), array(), $addModelVersion);
+
+    // Add View
+    $addViewVersion = date("ymd-Gis", filemtime(plugin_dir_path(dirname(__FILE__, 1)) . 'src/add_property/AddView.js'));
+    wp_enqueue_script('View', plugins_url('src/add_property/AddView.js', dirname(__FILE__, 1)), array(), $addViewVersion);
+
+    // Add Controller
+    $addViewVersion = date("ymd-Gis", filemtime(plugin_dir_path(dirname(__FILE__, 1)) . 'src/add_property/AddController.js'));
+    wp_enqueue_script('View', plugins_url('src/add_property/AddController.js', dirname(__FILE__, 1)), array(), $addControllerVersion);
+
+    //LoadStyles();
 }
 
 add_action('wp_enqueue_scripts', 'LoadScripts');
