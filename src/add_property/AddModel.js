@@ -25,4 +25,15 @@ class AddModel {
       (propertyElement) => propertyElement.ID,
     ));
   }
+
+  /**
+   * The getPropertyNameFromID function returns a property with a given ID
+   * @returns {Array}
+   */
+  getPropertyNameFromID(id) {
+    return this.response.then((data) => data.PROPERTIES.filter(
+      (propertyElement) => propertyElement.ID === id,
+    ));
+  }
+
 }

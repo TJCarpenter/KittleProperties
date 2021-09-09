@@ -2,45 +2,45 @@
 
 function append_properties()
 {
-    if (isset($_POST['propertyID'])) {
+    if (isset($_POST['property-id'])) {
 
         $property = new stdClass();
 
         // Property ID
-        $property->id = $_POST['propertyID'];
+        $property->id = $_POST['property-id'];
 
         // Property Name
-        $property->name = $_POST['propertyName'];
+        $property->name = $_POST['property-name'];
 
         // Property Address
-        $property->address = $_POST['propertyAddress'];
+        $property->address = $_POST['property-address'];
 
         // Property City
-        $property->city = $_POST['propertyCity'];
+        $property->city = $_POST['property-city'];
 
         // Property State
-        $property->state = $_POST['propertyState'];
+        $property->state = $_POST['property-state'];
 
         // Property Zipcode
-        $property->zipcode = $_POST['propertyZipcode'];
+        $property->zipcode = $_POST['property-zipcode'];
 
         // Property LAT
-        $property->lat = $_POST['propertyLAT'];
+        $property->lat = $_POST['property-latitude'];
 
         // Property LON
-        $property->lon = $_POST['propertyLON'];
+        $property->lon = $_POST['property-longitude'];
 
         // Property Affordability
-        $property->affordability = $_POST['propertyAffordability'];
+        $property->affordability = $_POST['property-affordability'];
 
         // Property Housing Type
-        $property->housingType = $_POST['propertyHousingType'];
+        $property->housingType = $_POST['property-housing-type'];
 
         // Tags
-        $property->tag1 = isset($_POST['tag1']) ? 'TRUE' : 'FALSE'; // Under Construction
-        $property->tag2 = isset($_POST['tag2']) ? 'TRUE' : 'FALSE'; // Now Accepting Applications
-        $property->tag3 = isset($_POST['tag3']) ? 'TRUE' : 'FALSE'; // Imediate Move In's Available
-        $property->tag4 = isset($_POST['tag4']) ? 'TRUE' : 'FALSE'; // Waitlist is Open
+        $property->tag1 = isset($_POST['tag1']) && 'on' === $_POST['tag1'] ? 'TRUE' : 'FALSE'; // Under Construction
+        $property->tag2 = isset($_POST['tag2']) && 'on' === $_POST['tag2'] ? 'TRUE' : 'FALSE'; // Now Accepting Applications
+        $property->tag3 = isset($_POST['tag3']) && 'on' === $_POST['tag3'] ? 'TRUE' : 'FALSE'; // Imediate Move In's Available
+        $property->tag4 = isset($_POST['tag4']) && 'on' === $_POST['tag4'] ? 'TRUE' : 'FALSE'; // Waitlist is Open
         // $property->tag5  = isset($_POST['tag5']) ? 'TRUE' : 'FALSE';
         // $property->tag6  = isset($_POST['tag6']) ? 'TRUE' : 'FALSE';
         // $property->tag7  = isset($_POST['tag7']) ? 'TRUE' : 'FALSE';
@@ -49,19 +49,19 @@ function append_properties()
         // $property->tag10 = isset($_POST['tag10']) ? 'TRUE' : 'FALSE';
 
         // Property Has Sister Property
-        $property->hasSisterProperty = isset($_POST['propertyHasSisterProperty']) ? 'TRUE' : 'FALSE';
+        $property->hasSisterProperty = isset($_POST['sister-property']) && 'on' === $_POST['sister-property'] ? 'TRUE' : 'FALSE';
 
         // Property Sister Property ID
-        $property->sisterPropertyID = 'TRUE' === $property->hasSisterProperty ? $_POST['propertySisterPropertyID'] : -1;
+        $property->sisterPropertyID = 'TRUE' === $property->hasSisterProperty ? $_POST['sister-property-id'] : -1;
 
         // Property Website
-        $property->website = $_POST['propertyWebsite'];
+        $property->website = $_POST['property-website'];
 
         // Property Phone Number
-        $property->phoneNumber = $_POST['propertyPhoneNumber'];
+        $property->phoneNumber = str_replace("-", "", $_POST['property-phone-number']);
 
         // Property Email
-        $property->email = $_POST['propertyEmailAddress'];
+        $property->email = $_POST['property-email-address'];
 
         // Property PhotoID
         $property->photoID = "apartment_$property->id";
@@ -127,9 +127,14 @@ function append_properties()
                 ],
             ]
         );
-        $service->spreadsheets_values->batchUpdate($spreadsheetid, $valueRange);
-    }
 
+        try {
+            $service->spreadsheets_values->batchUpdate($spreadsheetid, $valueRange);
+            var_dump(array('success' => true));
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
 }
 
 function get_last_row($service, $spreadsheetId, $spreadsheetName)
