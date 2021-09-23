@@ -385,6 +385,22 @@
         margin-left: 0.5rem;
     }
 
+    .load-image {
+      height: 24px;
+      width: 24px;
+      animation: load-animation 1s linear infinite;
+    }
+    @keyframes load-animation {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+
     .switch {
       position: relative;
       display: inline-block;
@@ -494,7 +510,7 @@
               <h5 class="input-group_header_text">ID</h5>
               <div class="error-tooltip">
                 <img class="js-error-image error-image input-group_title_image"
-                  src="http://127.0.0.1/wp/wp-content/uploads/2021/08/error.png" style="display:none">
+                  src="http://127.0.0.1/wp/wp-content/uploads/2021/09/question_alt.png" style="display:none">
                 <div class="js-error-message error-message" style="display: none">
                   <p class="js-error-message_text error-message_text"></p>
                 </div>
@@ -502,7 +518,7 @@
               <img class="js-success-image input-group_title_image"
                 src="http://127.0.0.1/wp/wp-content/uploads/2021/08/success.png" style="display:none">
             </span>
-            <input class="js-new-property_id" type="text" name="property-id" id="property-id">
+            <input class="js-new-property_id js-format-text-input" type="text" name="property-id" id="property-id">
           </div>
 
           <div class="inline-group-item flex-3">
@@ -510,7 +526,7 @@
               <h5 class="input-group_header_text">NAME</h5>
               <div class="error-tooltip">
                 <img class="js-error-image error-image input-group_title_image"
-                  src="http://127.0.0.1/wp/wp-content/uploads/2021/08/error.png" style="display:none">
+                  src="http://127.0.0.1/wp/wp-content/uploads/2021/09/question_alt.png" style="display:none">
                 <div class="js-error-message error-message" style="display: none">
                   <p class="js-error-message_text error-message_text"></p>
                 </div>
@@ -518,7 +534,7 @@
               <img class="js-success-image input-group_title_image"
                 src="http://127.0.0.1/wp/wp-content/uploads/2021/08/success.png" style="display:none">
             </span>
-            <input class="js-new-property_name" type="text" name="property-name" id="property-name">
+            <input class="js-new-property_name js-text-input" type="text" name="property-name" id="property-name">
           </div>
         </div>
       </div>
@@ -528,29 +544,30 @@
         <hr>
 
         <div class="input-group">
-          <span class="input-group_header">
-            <h5 class="input-group_header_text">ADDRESS</h5>
-              <div class="error-tooltip">
-                <img class="js-error-image error-image input-group_title_image"
-                  src="http://127.0.0.1/wp/wp-content/uploads/2021/08/error.png" style="display:none">
-                <div class="js-error-message error-message" style="display: none">
-                  <p class="js-error-message_text error-message_text"></p>
+          <div class="input-group-item">
+            <span class="input-group_header">
+              <h5 class="input-group_header_text">ADDRESS</h5>
+                <div class="error-tooltip">
+                  <img class="js-error-image error-image input-group_title_image"
+                    src="http://127.0.0.1/wp/wp-content/uploads/2021/09/question_alt.png" style="display:none">
+                  <div class="js-error-message error-message" style="display: none">
+                    <p class="js-error-message_text error-message_text"></p>
+                  </div>
                 </div>
-              </div>
-            <img class="js-success-image input-group_title_image"
-              src="http://127.0.0.1/wp/wp-content/uploads/2021/08/success.png" style="display:none">
-          </span>
-          <input class="js-new-property_address" type="text" name="property-address" id="property-address">
+              <img class="js-success-image input-group_title_image"
+                src="http://127.0.0.1/wp/wp-content/uploads/2021/08/success.png" style="display:none">
+            </span>
+            <input class="js-new-property_address js-text-input" type="text" name="property-address" id="property-address">
+          </div>
         </div>
 
         <div class="input-inline-group">
-
           <div class="inline-group-item">
             <span class="input-group_header">
               <h5 class="input-group_header_text">CITY</h5>
               <div class="error-tooltip">
                 <img class="js-error-image error-image input-group_title_image"
-                  src="http://127.0.0.1/wp/wp-content/uploads/2021/08/error.png" style="display:none">
+                  src="http://127.0.0.1/wp/wp-content/uploads/2021/09/question_alt.png" style="display:none">
                 <div class="js-error-message error-message" style="display: none">
                   <p class="js-error-message_text error-message_text"></p>
                 </div>
@@ -558,7 +575,7 @@
               <img class="js-success-image input-group_title_image"
                 src="http://127.0.0.1/wp/wp-content/uploads/2021/08/success.png" style="display:none">
             </span>
-            <input class="js-new-property_city" type="text" name="property-city" id="property-city">
+            <input class="js-new-property_city js-text-input" type="text" name="property-city" id="property-city">
           </div>
 
           <div class="inline-group-item">
@@ -566,7 +583,7 @@
               <h5 class="input-group_header_text">STATE</h5>
               <div class="error-tooltip">
                 <img class="js-error-image error-image input-group_title_image"
-                  src="http://127.0.0.1/wp/wp-content/uploads/2021/08/error.png" style="display:none">
+                  src="http://127.0.0.1/wp/wp-content/uploads/2021/09/question_alt.png" style="display:none">
                 <div class="js-error-message error-message" style="display: none">
                   <p class="js-error-message_text error-message_text"></p>
                 </div>
@@ -652,7 +669,7 @@
               <h5 class="input-group_header_text">ZIPCODE</h5>
               <div class="error-tooltip">
                 <img class="js-error-image error-image input-group_title_image"
-                  src="http://127.0.0.1/wp/wp-content/uploads/2021/08/error.png" style="display:none">
+                  src="http://127.0.0.1/wp/wp-content/uploads/2021/09/question_alt.png" style="display:none">
                 <div class="js-error-message error-message" style="display: none">
                   <p class="js-error-message_text error-message_text"></p>
                 </div>
@@ -660,7 +677,7 @@
               <img class="js-success-image input-group_title_image"
                 src="http://127.0.0.1/wp/wp-content/uploads/2021/08/success.png" style="display:none">
             </span>
-            <input class="js-new-property_zipcode" type="text" name="property-zipcode" id="property-zipcode">
+            <input class="js-new-property_zipcode js-format-text-input" type="text" name="property-zipcode" id="property-zipcode">
           </div>
         </div>
 
@@ -670,7 +687,7 @@
               <h5 class="input-group_header_text">LATITUDE</h5>
               <div class="error-tooltip">
                 <img class="js-error-image error-image input-group_title_image"
-                  src="http://127.0.0.1/wp/wp-content/uploads/2021/08/error.png" style="display:none">
+                  src="http://127.0.0.1/wp/wp-content/uploads/2021/09/question_alt.png" style="display:none">
                 <div class="js-error-message error-message" style="display: none">
                   <p class="js-error-message_text error-message_text"></p>
                 </div>
@@ -678,7 +695,7 @@
               <img class="js-success-image input-group_title_image"
                 src="http://127.0.0.1/wp/wp-content/uploads/2021/08/success.png" style="display:none">
             </span>
-            <input class="js-new-property_latitude" type="text" name="property-latitude" id="property-latitude" readonly>
+            <input class="js-new-property_latitude js-auto-input" type="text" name="property-latitude" id="property-latitude" readonly>
           </div>
 
           <div class="inline-group-item">
@@ -686,7 +703,7 @@
               <h5 class="input-group_header_text">LONGITUDE</h5>
               <div class="error-tooltip">
                 <img class="js-error-image error-image input-group_title_image"
-                  src="http://127.0.0.1/wp/wp-content/uploads/2021/08/error.png" style="display:none">
+                  src="http://127.0.0.1/wp/wp-content/uploads/2021/09/question_alt.png" style="display:none">
                 <div class="js-error-message error-message" style="display: none">
                   <p class="js-error-message_text error-message_text"></p>
                 </div>
@@ -694,7 +711,7 @@
               <img class="js-success-image input-group_title_image"
                 src="http://127.0.0.1/wp/wp-content/uploads/2021/08/success.png" style="display:none">
             </span>
-            <input class="js-new-property_longitude" type="text" name="property-longitude" id="property-longitude" readonly>
+            <input class="js-new-property_longitude js-auto-input" type="text" name="property-longitude" id="property-longitude" readonly>
           </div>
 
           <div class="inline-group-item">
@@ -702,13 +719,14 @@
               <h5 class="input-group_header_text">&nbsp;</h5>
               <div class="error-tooltip">
                 <img class="js-error-image error-image input-group_title_image"
-                  src="http://127.0.0.1/wp/wp-content/uploads/2021/08/error.png" style="display:none">
+                  src="http://127.0.0.1/wp/wp-content/uploads/2021/09/question_alt.png" style="display:none">
                 <div class="js-error-message error-message" style="display: none">
                   <p class="js-error-message_text error-message_text"></p>
                 </div>
               </div>
               <img class="js-success-image input-group_title_image"
                 src="http://127.0.0.1/wp/wp-content/uploads/2021/08/success.png" style="display:none">
+              <img class="js-load-image load-image" src="http://127.0.0.1/wp/wp-content/uploads/2021/09/refresh.png" style="display:none">
             </span>
             <button class="js-new-property_lat_lon_button" type="button">Get Position</button>
           </div>
@@ -732,7 +750,7 @@
               <h5 class="input-group_header_text">HOUSING TYPE</h5>
               <div class="error-tooltip">
                 <img class="js-error-image error-image input-group_title_image"
-                  src="http://127.0.0.1/wp/wp-content/uploads/2021/08/error.png" style="display:none">
+                  src="http://127.0.0.1/wp/wp-content/uploads/2021/09/question_alt.png" style="display:none">
                 <div class="js-error-message error-message" style="display: none">
                   <p class="js-error-message_text error-message_text"></p>
                 </div>
@@ -741,7 +759,7 @@
                 src="http://127.0.0.1/wp/wp-content/uploads/2021/08/success.png" style="display:none">
             </span>
             <div class="js-new-property_housing-type_dropdown dropdown-wrapper js-dropdown-wrapper" id="housing-type">
-              <input class="js-dropdown-input dropdown-input" type="text" name="property-housing-type" readonly>
+              <input class="js-dropdown-input dropdown-input" type="text" name="property-housing-type">
               <button class="js-new-property_housing-type-dropdown_button js-dropdown-button dropdown-button"
                 type="button">
                 <img class="dropdown-image"
@@ -761,7 +779,7 @@
               <h5 class="input-group_header_text">AFFORDABILITY</h5>
               <div class="error-tooltip">
                 <img class="js-error-image error-image input-group_title_image"
-                  src="http://127.0.0.1/wp/wp-content/uploads/2021/08/error.png" style="display:none">
+                  src="http://127.0.0.1/wp/wp-content/uploads/2021/09/question_alt.png" style="display:none">
                 <div class="js-error-message error-message" style="display: none">
                   <p class="js-error-message_text error-message_text"></p>
                 </div>
@@ -770,7 +788,7 @@
                 src="http://127.0.0.1/wp/wp-content/uploads/2021/08/success.png" style="display:none">
             </span>
             <div class="js-new-property_affordability_dropdown dropdown-wrapper js-dropdown-wrapper" id="affordability">
-              <input class="js-dropdown-input dropdown-input" type="text" name="property-affordability" readonly>
+              <input class="js-dropdown-input dropdown-input" type="text" name="property-affordability">
               <button class="js-new-property_affordability-dropdown_button js-dropdown-button dropdown-button"
                 type="button">
                 <img class="dropdown-image"
@@ -795,7 +813,7 @@
               <h5 class="input-group_header_text">SISTER PROPERTY</h5>
               <div class="error-tooltip">
                 <img class="js-error-image error-image input-group_title_image"
-                  src="http://127.0.0.1/wp/wp-content/uploads/2021/08/error.png" style="display:none">
+                  src="http://127.0.0.1/wp/wp-content/uploads/2021/09/question_alt.png" style="display:none">
                 <div class="js-error-message error-message" style="display: none">
                   <p class="js-error-message_text error-message_text"></p>
                 </div>
@@ -804,7 +822,7 @@
                 src="http://127.0.0.1/wp/wp-content/uploads/2021/08/success.png" style="display:none">
             </span>
             <label class="switch">
-              <input class="js-new-sister-property" type="checkbox" name="sister-property">
+              <input class="js-new-sister-property js-checkbox-input" type="checkbox" name="sister-property">
               <span class="slider"></span>
             </label>
           </div>
@@ -814,7 +832,7 @@
               <h5 class="input-group_header_text">SISTER PROPERTY ID</h5>
               <div class="error-tooltip">
                 <img class="js-error-image error-image input-group_title_image"
-                  src="http://127.0.0.1/wp/wp-content/uploads/2021/08/error.png" style="display:none">
+                  src="http://127.0.0.1/wp/wp-content/uploads/2021/09/question_alt.png" style="display:none">
                 <div class="js-error-message error-message" style="display: none">
                   <p class="js-error-message_text error-message_text"></p>
                 </div>
@@ -822,7 +840,7 @@
               <img class="js-success-image input-group_title_image"
                 src="http://127.0.0.1/wp/wp-content/uploads/2021/08/success.png" style="display:none">
             </span>
-            <input class="js-new-sister-property_id" type="text" name="sister-property-id" id="sister-property-id" disabled readonly>
+            <input class="js-new-sister-property_id js-format-text-input" type="text" name="sister-property-id" id="sister-property-id" disabled readonly>
           </div>
 
           <div class="inline-group-item flex-3">
@@ -843,7 +861,7 @@
 
           <div class="input-group-item">
             <label class="switch">
-              <input class="js-new-property-tags" type="checkbox" name="tag1">
+              <input class="js-new-property-tags js-checkbox-input" type="checkbox" name="tag1">
               <span class="slider"></span>
             </label>
             <span class="input-group_header">
@@ -853,7 +871,7 @@
 
           <div class="input-group-item">
             <label class="switch">
-              <input class="js-new-property-tags" type="checkbox" name="tag2">
+              <input class="js-new-property-tags js-checkbox-input" type="checkbox" name="tag2">
               <span class="slider"></span>
             </label>
             <span class="input-group_header">
@@ -863,7 +881,7 @@
 
           <div class="input-group-item">
             <label class="switch">
-              <input class="js-new-property-tags" type="checkbox" name="tag3">
+              <input class="js-new-property-tags js-checkbox-input" type="checkbox" name="tag3">
               <span class="slider"></span>
             </label>
             <span class="input-group_header">
@@ -873,7 +891,7 @@
 
           <div class="input-group-item">
             <label class="switch">
-              <input class="js-new-property-tags" type="checkbox" name="tag4">
+              <input class="js-new-property-tags js-checkbox-input" type="checkbox" name="tag4">
               <span class="slider"></span>
             </label>
             <span class="input-group_header">
@@ -890,19 +908,21 @@
         <hr>
 
         <div class="input-group">
-          <span class="input-group_header">
-            <h5 class="input-group_header_text">WEBSITE</h5>
-              <div class="error-tooltip">
-                <img class="js-error-image error-image input-group_title_image"
-                  src="http://127.0.0.1/wp/wp-content/uploads/2021/08/error.png" style="display:none">
-                <div class="js-error-message error-message" style="display: none">
-                  <p class="js-error-message_text error-message_text"></p>
+          <div class="input-group-item">
+            <span class="input-group_header">
+              <h5 class="input-group_header_text">WEBSITE</h5>
+                <div class="error-tooltip">
+                  <img class="js-error-image error-image input-group_title_image"
+                    src="http://127.0.0.1/wp/wp-content/uploads/2021/09/question_alt.png" style="display:none">
+                  <div class="js-error-message error-message" style="display: none">
+                    <p class="js-error-message_text error-message_text"></p>
+                  </div>
                 </div>
-              </div>
-            <img class="js-success-image input-group_title_image"
-              src="http://127.0.0.1/wp/wp-content/uploads/2021/08/success.png" style="display:none">
-          </span>
-          <input class="js-new-property_website" type="text" name="property-website" id="property-website">
+              <img class="js-success-image input-group_title_image"
+                src="http://127.0.0.1/wp/wp-content/uploads/2021/08/success.png" style="display:none">
+            </span>
+            <input class="js-new-property_website js-text-input" type="text" name="property-website" id="property-website">
+          </div>
         </div>
 
         <div class="input-inline-group">
@@ -912,7 +932,7 @@
               <h5 class="input-group_header_text">PHONE NUMBER</h5>
               <div class="error-tooltip">
                 <img class="js-error-image error-image input-group_title_image"
-                  src="http://127.0.0.1/wp/wp-content/uploads/2021/08/error.png" style="display:none">
+                  src="http://127.0.0.1/wp/wp-content/uploads/2021/09/question_alt.png" style="display:none">
                 <div class="js-error-message error-message" style="display: none">
                   <p class="js-error-message_text error-message_text"></p>
                 </div>
@@ -920,7 +940,7 @@
               <img class="js-success-image input-group_title_image"
                 src="http://127.0.0.1/wp/wp-content/uploads/2021/08/success.png" style="display:none">
             </span>
-            <input class="js-new-property_phone-number" type="text" name="property-phone-number"
+            <input class="js-new-property_phone-number js-format-text-input" type="text" name="property-phone-number"
               id="property-phone-number">
           </div>
 
@@ -929,7 +949,7 @@
               <h5 class="input-group_header_text">EMAIL ADDRESS</h5>
               <div class="error-tooltip">
                 <img class="js-error-image error-image input-group_title_image"
-                  src="http://127.0.0.1/wp/wp-content/uploads/2021/08/error.png" style="display:none">
+                  src="http://127.0.0.1/wp/wp-content/uploads/2021/09/question_alt.png" style="display:none">
                 <div class="js-error-message error-message" style="display: none">
                   <p class="js-error-message_text error-message_text"></p>
                 </div>
@@ -937,7 +957,7 @@
               <img class="js-success-image input-group_title_image"
                 src="http://127.0.0.1/wp/wp-content/uploads/2021/08/success.png" style="display:none">
             </span>
-            <input class="js-new-property_email-address" type="text" name="property-email-address"
+            <input class="js-new-property_email-address js-format-text-input" type="text" name="property-email-address"
               id="property-email-address">
           </div>
         </div>
@@ -948,9 +968,8 @@
     <div class="display-listing js-display-listing">
       <div class="display-listing_content">
         <div class="display-listing_content_info">
-          <h4 class="display_property-name js-display_property-name">{Property Name}</h4>
-          <h6 class="display_property-address js-display_property-address">{Property Address}, {Property City},
-            {Property State}</h6>
+          <h4 class="display_property-name js-display_property-name">Holmes, Sherlock</h4>
+          <h6 class="display_property-address js-display_property-address">221B Baker Street, Marylebone, UK </h6>
         </div>
         <div class="display-tag">
 
@@ -999,10 +1018,10 @@
 
   <div class="submit">
     <button class="js-submit-data" type="submit">Submit</button>
-    <button class="js-preview-data js-modal-open" type="button">Preview Data</button>
+    <button class="js-preview-data js-preview-modal-open" type="button">Preview Data</button>
   </div>
 
-  <div class="modal js-modal">
+  <div class="modal js-modal js-preview-modal">
 
     <div class="modal-content">
       <span class="js-modal-close modal-close">&times;</span>
@@ -1092,678 +1111,31 @@
 
   </div>
 
+  <div class="modal js-modal js-submit-unsuccessful-modal">
+
+    <div class="modal-content">
+      <span class="js-modal-close modal-close">&times;</span>
+      <h3>Error</h3>
+      <h5>Form was unable to be submitted as completed. Check if any errors or empty fields exist</h5>
+    </div>
+
+  </div>
+
+  <div class="modal js-modal js-submit-successful-modal">
+
+    <div class="modal-content">
+      <span class="js-modal-close modal-close">&times;</span>
+      <h1>Submitted</h1>
+    </div>
+
+  </div>
+
 </div>
 
 <script>
 
     $(document).ready(() => {
 
-        //const AddProperty = new Controller(new Model(), new View());
-
-        // Get List of ID's already in use
-        model = new AddModel();
-
-          /**
-          * Function to open and close the dropdown state select
-          */
-        function toggle_Dropdown(e) {
-
-          let dropdownContent = $(e.target).closest('.js-dropdown-wrapper').find('.js-new-property-dropdown-content');
-          let dropdownSize = dropdownContent.children().outerHeight() * (dropdownContent.children().length);
-
-          if (dropdownContent.height() > 0 || e.type == 'focusout') {
-            dropdownContent.animate({
-              height: '0px',
-            });
-          } else {
-            dropdownContent.animate({
-              height: dropdownSize > $(window).height() / 2 ? '50vh' : `${dropdownSize}px`,
-            });
-          }
-        }
-
-        /**
-        * Function to add the selected dropdown item to the filter and close the dropdown
-        */
-        function dropdown_ContentSelect(e) {
-
-          let dropdownInput = $(e.target).closest('.js-dropdown-wrapper').find('.js-dropdown-input');
-
-          dropdownInput.val(e.target.id);
-
-          toggle_Dropdown(e);
-        }
-
-        /**
-         * The displayErrorMessage function displays an error message on the given element
-         * @param {Object} element
-         * @param {String} message
-         */
-        function displayErrorMessage(element, message) {
-
-          // Get the parent element
-          parentElement = element.parent();
-
-          // Find each element within the parent
-          let errorImage = parentElement.find('.js-error-image');
-          let successImage = parentElement.find('.js-success-image');
-          let errorText = parentElement.find('.js-error-message_text');
-          let errorMessage = parentElement.find('.js-error-message');
-
-          // Fade any success images out
-          $(successImage).fadeOut(1);
-
-          // Fade error image in
-          $(errorImage).fadeIn(100);
-
-          // Remove success class and add error class
-          element.removeClass('success').addClass('error');
-
-          // Set the error text
-          $(errorText).html(message);
-
-          // Fade the error message in
-          $(errorMessage).fadeIn(100);
-        }
-
-        /**
-         * The displaySuccess function displays a success on a given element
-         * @param {Object} element
-         */
-        function displaySuccess(element) {
-
-          // Get the parent element
-          parentElement = element.parent();
-
-          // Find each element within the parent
-          let errorImage = parentElement.find('.js-error-image');
-          let successImage = parentElement.find('.js-success-image');
-          let errorMessage = parentElement.find('.js-error-message');
-
-          // Fade any error messages out
-          $(errorMessage).fadeOut(1);
-
-          // Fade any error images out
-          $(errorImage).fadeOut(1);
-
-          // Add success class and remove error class
-          element.addClass('success').removeClass('error');
-
-          // Fade success image in
-          $(successImage).fadeIn(100);
-        }
-
-        /**
-         * The clearErrorAndSuccess function removes any error or success on a given element
-         * @param {Object} element
-         */
-        function clearErrorAndSuccess(element) {
-
-          // Get the parent element
-          parentElement = element.parent();
-
-          // Find each element within the parent
-          let errorImage = parentElement.find('.js-error-image');
-          let successImage = parentElement.find('.js-success-image');
-          let errorMessage = parentElement.find('.js-error-message');
-
-          // Fade any success images out
-          $(successImage).fadeOut(100);
-
-          // Face any error images out
-          $(errorImage).fadeOut(100);
-
-          // Fade any error messages out
-          $(errorMessage).fadeOut(100);
-
-          // Remove any error or success class
-          element.removeClass('error success');
-        }
-
-        // ===== ID =====
-        $('.js-new-property_id').bind('input focusout', (e) => {
-          let newID = e.target.value;
-
-          // Tests
-          let isNumber = /^\d+$/.test(newID);
-          let isEmpty = newID === '';
-          let isGreaterThanThreeDigits = newID > 99;
-
-          if (!isNumber && !isEmpty) {
-            // Contains Non-numeric Values
-            displayErrorMessage($('.js-new-property_id'), 'Error: ID must contain only numeric values.');
-
-          } else if(!isEmpty){
-            if (isGreaterThanThreeDigits) {
-              model.getPropertyIDs().then((response) => {
-
-                // Tests
-                let isNotValidID = response.includes(newID);
-
-                if (isNotValidID) {
-                  // ID Already Exists
-                  displayErrorMessage($('.js-new-property_id'), 'Error: ID Already Exists.');
-                } else {
-                  // Valid New ID
-                  displaySuccess($('.js-new-property_id'));
-                  $('.js-preview-data_id').text(newID);
-                }
-              });
-
-            } else {
-              // ID Not Large Enough
-              displayErrorMessage($('.js-new-property_id'), 'Error: ID must be greater than 99.');
-            }
-          } else {
-            // ID Empty
-            displayErrorMessage($('.js-new-property_id'), 'Error: ID cannot be empty.');
-          }
-        })
-
-        // ===== NAME =====
-        $('.js-new-property_name').bind('input focusout', (e) => {
-          let newName = e.target.value;
-
-          // Tests
-          isEmpty = newName === '';
-
-          if (!isEmpty) {
-            // Not Empty
-            displaySuccess($('.js-new-property_name'));
-            $('.js-preview-data_name').text(newName);
-          } else {
-            // Empty
-            displayErrorMessage($('.js-new-property_name'), 'Error: Name cannot be empty.');
-          }
-
-        });
-
-        // ===== ADDRESS =====
-        $('.js-new-property_address').bind('input focusout', (e) => {
-          let newAddress = e.target.value;
-
-          // Tests
-          let isEmpty = newAddress === '';
-
-          if (!isEmpty) {
-            // Not Empty
-            displaySuccess($('.js-new-property_address'));
-            $('.js-preview-data_address').text(newAddress);
-          } else {
-            // Empty
-            displayErrorMessage($('.js-new-property_address'), 'Error: Address cannot be empty.')
-          }
-        });
-
-        // ===== CITY =====
-        $('.js-new-property_city').bind('input focusout', (e) => {
-          let newCity = e.target.value;
-
-          // Tests
-          let isEmpty = newCity === '';
-
-          if (!isEmpty) {
-            // Not Empty
-            displaySuccess($('.js-new-property_city'));
-            $('.js-preview-data_city').text(newCity);
-          } else {
-            // Empty
-            displayErrorMessage($('.js-new-property_city'), 'Error: City cannot be empty.')
-          }
-        });
-
-        // ===== DROPDOWN =====
-        $('.js-dropdown-button').bind('click focusout', (e) => {
-          toggle_Dropdown(e);
-
-          let dropdownInput = $(e.target).closest('.js-dropdown-wrapper').find('.js-dropdown-input');
-          let dropdownButton = $(e.target).closest('.js-dropdown-wrapper').find('.js-dropdown-button');
-          let dropdownWrapper = $(e.target).closest('.js-dropdown-wrapper');
-          let dropdownName = dropdownWrapper.attr('id').replace('-', ' ').split(' ').map((word) => word[0].toUpperCase() + word.substring(1)).join(' ');
-          let newDropdownValue = dropdownInput.val();
-
-          // Tests
-          if (e.type === 'focusout') {
-            let isEmpty = newDropdownValue === '' || newDropdownValue === undefined;
-
-            dropdownInput.css('border', '0px');
-            dropdownButton.css('border', '0px');
-
-            if (!isEmpty) {
-              // Not Empty
-              displaySuccess(dropdownWrapper);
-              $(`.js-preview-data_${dropdownWrapper.attr('id')}`).text(newDropdownValue);
-            } else {
-              displayErrorMessage(dropdownWrapper, `Error: <b>${dropdownName}</b> cannot be empty.`);
-            }
-          }
-        });
-
-        $('.js-new-property_dropdown-item').bind('mousedown', (e) => {
-          dropdown_ContentSelect(e);
-          displaySuccess($('.js-new-property_state_dropdown'));
-        });
-
-        // ===== ZIPCODE =====
-        $('.js-new-property_zipcode').bind('input focusout', (e) => {
-          let newZipcode = e.target.value;
-
-          // Tests
-          let isEmpty = newZipcode === '';
-          let isValidZipcode = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(newZipcode);
-
-          if(isValidZipcode && !isEmpty) {
-            // Valid Zipcode
-            displaySuccess($('.js-new-property_zipcode'));
-            $('.js-preview-data_zipcode').text(newZipcode);
-          } else if(!isValidZipcode && !isEmpty) {
-            // Invalid Zipcode
-            displayErrorMessage($('.js-new-property_zipcode'), 'Error: Invalid format.')
-          } else {
-            displayErrorMessage($('.js-new-property_zipcode'), 'Error: Zipcode cannot be empty.')
-          }
-        });
-
-
-        // ===== LAT AND LON =====
-        $('.js-new-property_lat_lon_button').bind('click', (e) => {
-          let errorMessage = '';
-
-          let enteredAddress = $('.js-new-property_address').val();
-          // Address Test
-          let addressEmpty = enteredAddress === '';
-
-          if(addressEmpty) {
-            errorMessage += '<br/><b>&emsp;&bull;&nbsp;Address cannot be empty.</b>';
-            displayErrorMessage($('.js-new-property_address'), 'Error: Address cannot be empty.');
-          }
-
-          let enteredCity = $('.js-new-property_city').val();
-          // City Test
-          let cityEmpty = enteredCity === '';
-
-          if (cityEmpty) {
-            errorMessage += '<br/><b>&emsp;&bull;&nbsp;City cannot be empty.</b>';
-            displayErrorMessage($('.js-new-property_city'), 'Error: City cannot be empty.');
-          }
-
-          let enteredState = $('.js-new-property_state').val();
-          // State Test
-          let stateEmpty = enteredState === '' || enteredState === undefined;
-
-          if (stateEmpty) {
-            errorMessage += '<br/><b>&emsp;&bull;&nbsp;State cannot be empty.</b>';
-            displayErrorMessage($('.js-new-property_state_dropdown'), 'Error: State cannot be empty.');
-          }
-
-          let enteredZipcode = $('.js-new-property_zipcode').val();
-          // Zipcode Test
-          let zipcodeEmpty = enteredZipcode === '';
-          let isValidZipcode = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(enteredZipcode);
-
-          if(!isValidZipcode && !zipcodeEmpty) {
-            errorMessage += '<br/><b>&emsp;&bull;&nbsp;Invalid Zipcode format.</b>';
-            displayErrorMessage($('.js-new-property_zipcode'), 'Error: Invalid format.')
-          } else if(zipcodeEmpty) {
-            errorMessage += '<br/><b>&emsp;&bull;&nbsp;Zipcode cannot be empty.</b>';
-            displayErrorMessage($('.js-new-property_zipcode'), 'Error: Zipcode cannot be empty.')
-          }
-
-          if (errorMessage === '') {
-            let accessKey = '3b125cea3d1d33d544f0d76717a8c6dd';
-            let query = encodeURI(`${enteredAddress} ${enteredState}, ${enteredCity}, ${enteredZipcode}`);
-            let endpoint = `http://api.positionstack.com/v1/forward?access_key=${accessKey}&query=${query}`;
-
-            fetch(endpoint).then((response) => {
-              return response.json()
-            }).then((response) => {
-              $('.js-new-property_latitude').val(response.data[0].latitude);
-              $('.js-new-property_longitude').val(response.data[0].longitude);
-
-              displaySuccess($('.js-new-property_longitude'))
-              displaySuccess($('.js-new-property_latitude'));
-              displaySuccess($('.js-new-property_lat_lon_button'));
-
-              $('.js-preview-data_latitude').text(response.data[0].latitude);
-              $('.js-preview-data_longitude').text(response.data[0].longitude);
-            });
-          } else {
-            displayErrorMessage($('.js-new-property_lat_lon_button'), errorMessage.slice(5))
-          }
-        });
-
-        // ===== SISTER PROPERTY =====
-        $('.js-new-sister-property').change((e) => {
-          let hasSisterProperty = $('.js-new-sister-property').prop('checked');
-
-          if (hasSisterProperty) {
-            $('.js-new-sister-property_id').prop('disabled', false).prop('readonly', false);
-            $('.js-preview-data_sister-property').text('on');
-          } else {
-            $('.js-new-sister-property_id').prop('disabled', true).prop('readonly', true);
-            $('.js-preview-data_sister-property').text('off');
-            $('.js-new-sister-property_id, .js-sister-property-lookup').val('');
-          }
-        });
-
-        $('.js-new-sister-property_id').bind('input focusout', (e) => {
-
-          let newSisterID = e.target.value;
-
-          // Tests
-          let isNumber = /^\d+$/.test(newSisterID);
-          let isEmpty = newSisterID === '';
-          let isGreaterThanThreeDigits = newSisterID > 99;
-
-          if (!isNumber && !isEmpty) {
-            // Contains Non-numeric Values
-            displayErrorMessage($('.js-new-sister-property_id'), 'Error: ID must contain only numeric values.');
-
-          } else if(!isEmpty){
-            if (isGreaterThanThreeDigits) {
-              model.getPropertyIDs().then((response) => {
-
-                // Tests
-                let isValidID = response.includes(newSisterID);
-
-                if (isValidID) {
-                  // ID Exists
-                  displaySuccess($('.js-new-sister-property_id'));
-                  $('.js-preview-data_sister-property_id').text(newSisterID);
-
-                  model.getPropertyNameFromID(newSisterID).then((response) => {
-                    $('.js-sister-property-lookup').val(`${response[0].ID}: ${response[0].NAME}`);
-                  })
-
-                } else {
-                  // ID Does Not Exist
-                  displayErrorMessage($('.js-new-sister-property_id'), 'Error: ID Does Not Exist.');
-                  $('.js-sister-property-lookup').val('');
-                }
-              });
-
-            } else {
-              // ID Not Large Enough
-              displayErrorMessage($('.js-new-sister-property_id'), 'Error: Invalid ID. Must be greater than 99.');
-              $('.js-sister-property-lookup').val('');
-            }
-          } else {
-            // ID Empty
-            displayErrorMessage($('.js-new-sister-property_id'), 'Error: ID cannot be empty.');
-            $('.js-sister-property-lookup').val('');
-          }
-
-        });
-
-        // ===== TAGS =====
-        $('.js-new-property-tags').change((e) => {
-          $('.js-new-property-tags').each((index, element) => {
-            $(`.js-preview-data_tag${index + 1}`).text(element.checked);
-          })
-        })
-
-        // ===== WEBSITE =====
-        $('.js-new-property_website').bind('input focusout', (e) => {
-          let newWebsite = e.target.value;
-
-          // Tests
-          let isEmpty = newWebsite === '';
-
-          if (!isEmpty) {
-            // Not Empty
-            displaySuccess($('.js-new-property_website'));
-            $('.js-preview-data_website').text(newWebsite);
-          } else {
-            // Empty
-            displayErrorMessage($('.js-new-property_website'), 'Error: Website cannot be empty.');
-          }
-        });
-
-
-        // ===== PHONE NUMBER =====
-        $('.js-new-property_phone-number').bind('keydown input', (e) => {
-
-          if (e.keyCode !== 8) {
-            let number = e.target.value.replace(/\D/g,'');
-            let dashedNumber;
-
-            if (number.length > 2) {
-              dashedNumber = number.substring(0, 3) + '-';
-              if (number.length === 4 || number.length === 5) {
-                dashedNumber += number.substr(3);
-              } else if (number.length > 5) {
-                dashedNumber += number.substring(3, 6) + '-';
-              }
-              if (number.length > 6) {
-                dashedNumber += number.substring(6);
-              }
-            } else {
-              dashedNumber = number;
-            }
-
-            $('.js-new-property_phone-number').val(dashedNumber);
-          }
-        });
-
-        $('.js-new-property_phone-number').bind('input focusout', (e) => {
-          let newPhoneNumber = e.target.value;
-
-          $('.js-new-property_phone-number').val((newPhoneNumber.length > 12) ? newPhoneNumber.slice(0, -1) : newPhoneNumber);
-
-          newPhoneNumber = $('.js-new-property_phone-number').val();
-
-          // Tests
-          let isEmpty = newPhoneNumber === '';
-          let isValidPhoneNumber = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/.test(newPhoneNumber);
-
-          if (isValidPhoneNumber && !isEmpty) {
-            // Valid Phone Number
-            displaySuccess($('.js-new-property_phone-number'));
-            $('.js-preview-data_phone-number').text(newPhoneNumber);
-          } else if (!isValidPhoneNumber && !isEmpty){
-            // Invalid Phone Number
-            displayErrorMessage($('.js-new-property_phone-number'), 'Error: Phone Number is invalid.');
-          } else {
-            // Empty
-            displayErrorMessage($('.js-new-property_phone-number'), 'Error: Phone Number cannot be empty.');
-          }
-        });
-
-
-
-        // ===== EMAIL ADDRESS =====
-        $('.js-new-property_email-address').bind('input focusout', (e) => {
-          let newEmailAddress = e.target.value;
-
-          // Tests
-          let isEmpty = newEmailAddress === '';
-          let isValidEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(newEmailAddress);
-
-          if (isValidEmail && !isEmpty) {
-            // Not Empty
-            displaySuccess($('.js-new-property_email-address'));
-            $('.js-preview-data_email-address').text(newEmailAddress);
-          } else if (!isValidEmail && !isEmpty) {
-            // Invalid Email Address
-            displayErrorMessage($('.js-new-property_email-address'), 'Error: Email Address is invalid.');
-          } else {
-            // Empty
-            displayErrorMessage($('.js-new-property_email-address'), 'Error: Email Address cannot be empty.');
-          }
-        });
-
-        // ===== TOOLTIP =====
-        $('.js-error-image').bind('mouseover mouseout', (e) => {
-          $(e.target).closest('.error-tooltip').find('.js-error-message').css('visibility', e.type === 'mouseover' ? 'visible' : 'hidden');
-        });
-
-
-
-        // Sticky Top for the display
-        $(window).scroll(function () {
-            if( $('.display').offset().top - $(window).scrollTop() < 50) {
-                if ($('.display').offset().top - $(window).scrollTop() > 50) {
-                    $('.js-display-listing').offset({top: $('.display').offset().top + 25});
-                } else {
-                    $('.js-display-listing').offset({top: $(window).scrollTop() + 50});
-                }
-            }
-        });
-
-        // Update Property Name
-        $('.js-new-property_name').on('input', (e) => {
-            if($(e.target).val() == '') {
-                $('.js-display_property-name').text('{Property Name}');
-            } else {
-                $('.js-display_property-name').text($(e.target).val());
-            }
-        });
-
-        $('.js-new-property_address, .js-new-property_city, .js-dropdown-button').on('input focusout', () => {
-
-            // Address Input
-            let propertyAddress = $('.js-new-property_address').val() == '' ? '{Property Addresss}' : $('.js-new-property_address').val();
-
-            // City Input
-            let propertyCity = $('.js-new-property_city').val() == '' ? '{Property City}' : $('.js-new-property_city').val();
-
-            // State Input
-            let propertyState = $('.js-new-property_state').val() == '' ? '{Property State}' : $('.js-new-property_state').val();
-
-            $('.js-display_property-address').text(`${propertyAddress}, ${propertyCity}, ${propertyState}`);
-
-        });
-
-        var activeSlide = 0;
-        var prevSlide = -1;
-        displaySlide(activeSlide, prevSlide);
-
-        $('.js-slide_back').bind('click', (e) => {
-          activeSlide -= 1;
-          displaySlide(activeSlide, activeSlide + 1);
-        })
-
-        $('.js-slide_next').bind('click', (e) => {
-          activeSlide += 1;
-          displaySlide(activeSlide, activeSlide - 1);
-        })
-
-        function displaySlide(activeIndex, prevIndex) {
-
-          var SLIDE_MAX = 5;
-
-          if (activeIndex === SLIDE_MAX) {
-            activeSlide = 0;
-          }
-
-          if (activeIndex === -1) {
-            activeSlide = SLIDE_MAX - 1;
-          }
-
-          $('.slide-form').each((index, element) => {
-            if (activeSlide !== index) {
-              $(element).hide();
-            } else {
-              $(element).show();
-            }
-          });
-
-          $('.slide-pagnation').each((index, element) => {
-            if (activeSlide === index) {
-              $(element).addClass('slide-pagnation-active');
-            } else {
-              $(element).removeClass('slide-pagnation-active')
-            }
-
-            if (prevIndex === index) {
-              $(element).addClass('slide-pagnation-filled');
-
-              let numberErrors = $('.slide-form').eq(index).find('.error').length;
-              let numberSuccess = $('.slide-form').eq(index).find('.success').length;
-
-              // Test
-              let isFilled = false;
-
-              switch (index) {
-                case 0:
-                  isFilled = numberSuccess === 2;
-                  break;
-                case 1:
-                  isFilled = numberSuccess >= 6;
-                  break;
-                case 2:
-                  isFilled = numberSuccess >= 2;
-                  break;
-                case 3:
-                  isFilled = numberSuccess > -1;
-                  break;
-                case 4:
-                  isFilled = numberSuccess === 3;
-                  break;
-              }
-
-              if (numberErrors > 0 || !isFilled) {
-                $(element).find('.js-success-image').hide();
-                $(element).find('.js-error-image').show();
-              } else if (isFilled) {
-                $(element).find('.js-error-image').hide();
-                $(element).find('.js-success-image').show();
-              }
-            }
-          })
-        }
-
-        $('.slide-pagnation').bind('click', (e) => {
-
-          $('.slide-form').each((index, element) => {
-
-            let targetElement = $(e.target).closest('.slide-pagnation').get(0);
-            let testElement = $('.slide-pagnation').eq(index).get(0);
-
-            if(targetElement === testElement) {
-              let prevSlide = activeSlide;
-              activeSlide = index;
-              displaySlide(index, prevSlide);
-            }
-          })
-        })
-
-        $('.js-modal-open').bind('click', (e) => {
-          $('.js-modal').fadeIn(100);
-        })
-
-        $('.js-modal-close').bind('click', (e) => {
-          $('.js-modal').fadeOut(100);
-        })
-
-        // ===== SUBMIT =====
-        $('.js-submit-data').bind('click', (e) => {
-          var formData = $('form').serializeArray()
-
-          formData = formData.concat(
-            $('form input[type=checkbox]:not(:checked)').map((index, element) => {
-              return {'name': element.name, 'value': 'off'}
-            }).get()
-          );
-
-          console.log($.param(formData));
-
-          if ($.param(formData).indexOf('=&') > -1) {
-            // Form has an empty value
-            console.log('Not Submitted');
-          } else {
-            // Form does not have an empty value
-            $.ajax({
-              type: 'POST',
-              url: 'http://127.0.0.1/wp/wp-json/api/v2/append',
-              data: $.param(formData),
-              success: (data) => {
-                alert(data);
-              }
-            })
-
-            console.log('Submitted');
-          }
-        })
+        controller = new AddController(new AddModel(), new AddView());
     })
 </script>

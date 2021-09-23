@@ -7,7 +7,19 @@ function append_properties()
         $property = new stdClass();
 
         // Property ID
-        $property->id = $_POST['property-id'];
+        $property->id = intval($_POST['property-id']);
+
+        $currentIDs = file_get_contents('http://127.0.0.1/wp/wp-json/api/v1/properties');
+
+        var_dump(array_column(json_decode($currentIDs)->PROPERTIES, 0));
+
+        // ===== ID CHECK =====
+        if (!is_int($property->id)) {
+            // Not an integer
+
+        } elseif ($property->id > 99) {
+
+        }
 
         // Property Name
         $property->name = $_POST['property-name'];
@@ -76,7 +88,6 @@ function append_properties()
         $valueRange = new Google_Service_Sheets_ValueRange();
         $valueRange->setValues(
             ['values' => [
-                $property->id,
                 $property->name,
                 $property->address,
                 $property->city,

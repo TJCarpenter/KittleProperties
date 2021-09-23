@@ -40,15 +40,15 @@ function LoadScripts()
 
     // Add Model
     $addViewVersion = date("ymd-Gis", filemtime(plugin_dir_path(dirname(__FILE__, 1)) . 'src/add_property/AddModel.js'));
-    wp_enqueue_script('View', plugins_url('src/add_property/AddModel.js', dirname(__FILE__, 1)), array(), $addModelVersion);
+    wp_enqueue_script('AddModel', plugins_url('src/add_property/AddModel.js', dirname(__FILE__, 1)), array(), $addModelVersion);
 
     // Add View
     $addViewVersion = date("ymd-Gis", filemtime(plugin_dir_path(dirname(__FILE__, 1)) . 'src/add_property/AddView.js'));
-    wp_enqueue_script('View', plugins_url('src/add_property/AddView.js', dirname(__FILE__, 1)), array(), $addViewVersion);
+    wp_enqueue_script('AddView', plugins_url('src/add_property/AddView.js', dirname(__FILE__, 1)), array(), $addViewVersion);
 
     // Add Controller
     $addViewVersion = date("ymd-Gis", filemtime(plugin_dir_path(dirname(__FILE__, 1)) . 'src/add_property/AddController.js'));
-    wp_enqueue_script('View', plugins_url('src/add_property/AddController.js', dirname(__FILE__, 1)), array(), $addControllerVersion);
+    wp_enqueue_script('AddController', plugins_url('src/add_property/AddController.js', dirname(__FILE__, 1)), array(), $addControllerVersion);
 
     //LoadStyles();
 }
